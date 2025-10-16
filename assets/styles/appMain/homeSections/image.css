@@ -1,0 +1,330 @@
+/* EXTEND SECTION */
+
+#extendImageSectionInp:checked ~ #app #extendImageSection {
+  background-color: #c9e0f7;
+}
+
+#extendImageSectionInp:checked ~ #app #extendImageSection .iconSection {
+  background-color: #edf4fc;
+}
+
+#extendImageSection {
+  text-align: center;
+  justify-content: center;
+  background-color: #edf4fc;
+  padding: 8px 3px 0 3px;
+  display: grid;
+  grid-template-rows: calc(1.8lh + 7px) 1lh 1lh 1lh;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#extendImageSection .iconSection {
+  aspect-ratio: 1 / 1;
+  width: 45px;
+  margin: 0 5px;
+  text-align: center;
+  padding: 5px;
+  background-color: #f5f6f7;
+  border: 2px solid #a8d2fd;
+}
+
+#extendImageSection .iconSection img {
+  width: 25px;
+}
+
+#extendImageSection .extendAction {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+#extendImageSection .extendAction img {
+  width: 0.5lh;
+  margin-top: 0.2lh;
+}
+
+
+/* SECTION */
+
+#extendImageSectionInp:checked ~ #app #imageSection {
+  display: grid;
+}
+
+#imageSection {
+  background-color: #f5f6f7;
+  top: 100%;
+  position: absolute;
+  padding: 6px 8px 3px 8px;
+  display: none;
+  box-shadow: 2px 2px 2px 0 lightgray;
+  gap: 5px;
+  grid-template-rows: calc(3.8lh + 12px) auto;
+}
+
+#imageSection footer {
+  text-align: center;
+  padding: 0;
+}
+
+#imageSection .actionBtns {
+  display: grid;
+  column-gap: 3px;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+    'bigBtn smlBtn1'
+    'bigBtn smlBtn2'
+    'bigBtn smlBtn3';
+}
+
+#imageSection .bigBtn {
+  grid-area: bigBtn;
+  position: relative;
+  display: grid;
+  grid-template-rows: calc(1.8lh + 12px) 2lh;
+}
+
+#imageSection .bigBtn:hover.nohover .mainBtn,
+#imageSection .bigBtn:hover.nohover .extendAction {
+  box-shadow: none;
+}
+
+#imageSection .bigBtn .mainBtn {
+  background-color: #0000;
+  padding: 0 8px;
+  display: grid;
+  place-content: center;
+}
+
+#imageSection .bigBtn:hover .mainBtn,
+#imageSection #imageExtBigInp:checked ~ .mainBtn {
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#imageSection .bigBtn:hover .mainBtn:hover {
+  background-color: #edf4fc;
+}
+
+#imageSection .bigBtn:hover .mainBtn:focus {
+  background-color: #c9e0f7;
+}
+
+#imageSection .bigBtn .mainBtn img {
+  height: calc(1.8lh + 6px);
+}
+
+#imageSection .bigBtn .extendAction {
+  background-color: #0000;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 1lh 1lh;
+}
+
+#imageSection .bigBtn:hover .extendAction,
+#imageSection #imageExtBigInp:checked ~ .extendAction {
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 0 0 0 #a8d2fd
+}
+
+#imageSection .bigBtn:hover .extendAction:hover {
+  background-color: #edf4fc;
+}
+
+#imageSection #imageExtBigInp:checked ~ .extendAction {
+  background-color: #c9e0f7;
+}
+
+#imageSection .bigBtn .extendAction picture {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+#imageSection .bigBtn .extendAction img {
+  width: 0.5lh;
+  margin-top: 0.2lh;
+}
+
+#imageSection .smlBtn {
+  padding: 0 5px;
+  width: fit-content;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  background-color: #0000;
+}
+
+#imageSection .smlBtn:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#imageSection .smlBtn:focus {
+  background-color: #c9e0f7;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#imageSection .smlBtn picture {
+  height: 1lh;
+}
+
+#imageSection .smlBtn img {
+  height: 100%;
+}
+
+#imageSection .smlBtn .extendAction {
+  display: flex;
+  align-items: center;
+  padding-left: 3px;
+}
+
+#imageSection .smlBtn .extendAction img {
+  width: 0.5lh;
+  height: auto;
+}
+
+#imageSection #imageExtBigInp:checked ~  .extendOpts {
+  display: grid;
+}
+
+#imageSection .bigBtn .extendOpts {
+  position: absolute;
+  background-color: #fff;
+  top: 100%;
+  padding: 4px;
+  display: none;
+  grid-template-rows: auto auto;
+  box-shadow:
+    inset -2px 2px 0 0 #d7d7d7,
+    inset 2px -2px 0 0 #d7d7d7
+}
+
+#imageSection .bigBtn .extendOpts button:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#imageSection .bigBtn .extendOpts button:hover picture {
+  border-right-color: #0000;
+}
+
+#imageSection .bigBtn .extendOpts button {
+  background-color: #0000;
+  padding: 0;
+  text-align: left;
+  justify-content: left;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+#imageSection .bigBtn .extendOpts picture {
+  padding: 4px;
+  padding-left: 6px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  border-right: 2px solid #d7d7d7
+}
+
+#imageSection .bigBtn .extendOpts img {
+  width: 100%;
+  object-fit: contain;
+}
+
+#imageSection .bigBtn .extendOpts span {
+  padding: 0;
+  padding-left: 8px;
+  padding-right: 18px;
+  text-align: left;
+  align-content: center;
+  white-space: nowrap;
+}
+
+#imageSection .smlExtBtnCont {
+  position: relative;
+  display: flex;
+}
+
+#imageSection .smlExtBtnCont .smlBtn {
+  height: 100%;
+}
+
+#imageSection #extendRotateInp:checked ~ .smlBtn {
+  background-color: #c9e0f7;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#imageSection .smlExtBtnCont .extendOpts {
+  position: absolute;
+  top: 100%;
+  background-color: #fff;
+  padding: 4px;
+  display: none;
+  grid-template-rows: auto auto;
+  box-shadow:
+    inset -2px 2px 0 0 #d7d7d7,
+    inset 2px -2px 0 0 #d7d7d7
+}
+
+#extendRotateInp:checked ~ .extendOpts {
+  display: block;
+}
+
+#imageSection .smlExtBtnCont .extendOpts button {
+  background-color: #0000;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  justify-content: left;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+#imageSection .smlExtBtnCont .extendOpts button:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#imageSection .smlExtBtnCont .extendOpts button:hover picture {
+  border-right-color: #0000;
+}
+
+#imageSection .smlExtBtnCont .extendOpts picture {
+  padding: 4px;
+  padding-left: 6px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  border-right: 2px solid #d7d7d7
+}
+
+#imageSection .smlExtBtnCont .extendOpts img {
+  width: 100%;
+  object-fit: contain;
+}
+
+#imageSection .smlExtBtnCont .extendOpts span {
+  padding: 0;
+  padding-left: 8px;
+  padding-right: 18px;
+  text-align: left;
+  align-content: center;
+  white-space: nowrap;
+}

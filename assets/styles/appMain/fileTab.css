@@ -1,0 +1,213 @@
+#fileTabChk:checked ~ #app #fileSection {
+  display: grid;
+}
+
+#fileSection {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  background-color: #fff;
+  padding-bottom: 2px;
+  box-shadow: 
+    inset -2px -2px 0 0 #8e9caf,
+    inset 2px 0 0 0 #8e9caf;
+  grid-template-rows: auto auto 1lh;
+  grid-template-areas: 
+    'fileSectionTabs fileSectionTabs'
+    'fileOpts fileLists'
+    'voidBottomFileSection voidBottomFileSection';
+}
+
+#fileSectionTabs {
+  grid-area: fileSectionTabs;
+  display: grid;
+  grid-template-columns: 75px 1fr;
+}
+
+#fileSectionTabs .tab {
+  place-content: center;
+  display: flex;
+  padding: 7px;
+}
+
+#fileSectionTab {
+  color: #fff;
+  background-color: #1979ca;
+  box-shadow:
+    inset -2px 2px 0 0 #8e9caf,
+    inset 2px -2px 0 0 #8e9caf
+}
+
+#voidTabFile {
+  background-color: #f5f6f7;
+  box-shadow:
+    inset -2px 2px 0 0 #8e9caf,
+    inset 0 -2px 0 0 #8e9caf
+}
+
+#fileOpts {
+  grid-area: fileOpts;
+  padding-left: 2px;
+  border-right: 2px solid #d7d7d7;
+}
+
+#fileOpts .fileOpt {
+  background-color: #0000;
+  border: 0;
+  width: 175px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 5px;
+}
+
+#fileOpts .fileOpt:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#saveAsBtnCont:hover .fileOpt {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#saveAsBtnCont:hover #saveAsOptsBtn, #saveAsBtnCont.extend #saveAsOptsBtn {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 0 -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#saveAsBtnCont.extend .fileOpt {
+  background-color: #0000;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#saveAsBtnCont {
+  width: 175px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+#saveAsBtnCont .fileOpt {
+  width: 100%;
+}
+
+#saveAsOptsBtn {
+  background-color: #0000;
+  padding: 7px;
+  border: 0;
+  display: flex;
+  align-items: center;
+}
+
+#fileOpts #aboutBtn {
+  border-top: 2px solid #d7d7d7;
+}
+
+#saveAsOptsBtn img {
+  rotate: 270deg;
+  width: 13px;
+}
+
+.fileOpt picture {
+  width: 40px;
+  height: 40px;
+}
+
+.fileOpt img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#fileLists {
+  grid-area: fileLists;
+  width: 200px;
+  height: 100%;
+  padding-right: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+#recentPictures {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#recentPictures header, #saveAsOpts header {
+  padding: 5px 8px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f6f7f8;
+}
+
+#saveAsOpts header {
+  border-bottom: 2px solid #d7d7d7;
+}
+
+#recentPictures ol {
+  list-style-position: inside;
+  padding: 8px;
+  margin: 0;
+  box-shadow: inset 0 2px 0 0 #d7d7d7;
+}
+
+#saveAsOpts.visible {
+  display: block;
+}
+
+#saveAsOpts {
+  display: none;
+  background-color: #fff;
+  position: absolute;
+  top: 1px;
+  width: calc(100% - 5px);
+  height: calc(100% - 5px);
+  border: 2px solid #d7d7d7;
+  overflow: hidden;
+}
+
+#saveAsOptsBtns {
+  overflow-y: auto;
+  width: 100%;
+  height: calc(100% - 1lh - 12px);
+}
+
+#saveAsOpts .saveAsOpt {
+  background-color: #0000;
+  border: 0;
+  padding: 5px;
+  padding-left: 8px;
+  display: grid;
+  gap: 5px;
+  grid-template-areas: 
+    'saveAsOptPic h3'
+    'saveAsOptPic p';
+}
+
+#saveAsOpts .saveAsOpt picture {
+  grid-area: saveAsOptPic;
+}
+
+#saveAsOpts .saveAsOpt img {
+  height: 45px;
+}
+
+#saveAsOpts .saveAsOpt h3,
+#saveAsOpts .saveAsOpt p {
+  text-align: left;
+  margin: 0;
+}
+
+#voidBottomFileSection {
+  grid-area: voidBottomFileSection;
+  box-shadow: inset 0 2px 0 0 #8e9caf;
+}

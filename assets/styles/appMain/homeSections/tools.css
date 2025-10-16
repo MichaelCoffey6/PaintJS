@@ -1,0 +1,134 @@
+/* EXTEND SECTION */
+
+#extendToolsSectionInp:checked ~ #app #extendToolsSection {
+  background-color: #c9e0f7;
+}
+
+#extendToolsSectionInp:checked ~ #app #extendToolsSection .iconSection {
+  background-color: #edf4fc;
+}
+
+#extendToolsSection {
+  text-align: center;
+  justify-content: center;
+  background-color: #edf4fc;
+  padding: 8px 3px 0 3px;
+  display: grid;
+  grid-template-rows: calc(1.8lh + 7px) 1lh 1lh 1lh;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#extendToolsSection .iconSection {
+  aspect-ratio: 1 / 1;
+  width: 45px;
+  margin: 0 5px;
+  text-align: center;
+  padding: 5px;
+  background-color: #f5f6f7;
+  border: 2px solid #a8d2fd;
+}
+
+#extendToolsSection .iconSection img {
+  width: 25px;
+}
+
+#extendToolsSection .extendAction {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+#extendToolsSection .extendAction img {
+  width: 0.5lh;
+  margin-top: 0.2lh;
+}
+
+
+/* SECTION */
+
+#extendToolsSectionInp:checked ~ #app #toolsSection {
+  display: grid;
+}
+
+#toolsSection {
+  background-color: #f5f6f7;
+  top: 100%;
+  position: absolute;
+  padding: 6px 8px 3px 8px;
+  display: none;
+  width: min-content;
+  box-shadow: 2px 2px 2px 0 lightgray;
+  gap: 5px;
+  grid-template-rows: calc(3.8lh + 12px) auto;
+}
+
+#toolsSection footer {
+  text-align: center;
+  padding: 0;
+}
+
+#toolsSection .actionBtns {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 0.5fr 1fr 1fr 0.5fr;
+  grid-template-areas: 
+    '. . .'
+    'drawBtn fillBtn txtBtn'
+    'eraserBtn pickerBtn zoomBtn'
+    '. . .';
+}
+
+#toolsSection .actionBtns button {
+  height: 100%;
+  padding: 0;
+  display: grid;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  background-color: #0000;
+}
+
+#toolsSection .actionBtns button:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#toolsSection .actionBtns button:focus {
+  background-color: #c9e0f7;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#drawBtn {
+  grid-area: drawBtn;
+}
+
+#fillBtn {
+  grid-area: fillBtn;
+}
+
+#txtBtn {
+  grid-area: txtBtn;
+}
+
+#eraserBtn {
+  grid-area: eraserBtn;
+}
+
+#pickerBtn {
+  grid-area: pickerBtn;
+}
+
+#zoomBtn {
+  grid-area: zoomBtn;
+}
+
+#toolsSection .actionBtns img {
+  height: 1lh;
+  display: inline-block;
+  margin: auto;
+}

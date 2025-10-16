@@ -1,0 +1,69 @@
+@media (width > 530px) {
+  #colorsSection {
+    grid-template-rows: calc(3.8lh + 12px) auto;
+  }
+  
+  #colorsSection .actionBtns {
+    grid-template-columns: auto auto auto auto;
+    grid-template-areas: 'color1 color2 colorsCont editColors';
+  }
+  
+  #fileOpts .fileOpt {
+    width: 225px;
+  }
+  
+  #saveAsBtnCont {
+    width: 225px;
+  }
+  
+  #saveAsBtnCont .fileOpt {
+    width: 100%;
+  }
+
+  #fileLists {
+    width: 300px;
+  }
+}
+
+@media (width > 750px) {
+  #actionSections .sectionSeparator {
+    display: grid;
+  }
+  
+  #appMain #extendSections {
+    display: none;
+  }
+  
+  #appMain #actionSections {
+    height: auto;
+    padding: 5px;
+    padding-bottom: 7px;
+  }
+  
+  #clipboardSection, #imageSection, #toolsSection, #brushesActSection, #shapesSection, #sizesActSection, #colorsSection {
+    position: initial;
+    padding: 3px 3px 0 3px;
+    box-shadow: none;
+    display: grid;
+  }
+  
+  #fileOpts .fileOpt {
+    width: 260px;
+  }
+  
+  #saveAsBtnCont {
+    width: 260px;
+  }
+  
+  #saveAsBtnCont .fileOpt {
+    width: 100%;
+  }
+  
+  #fileLists {
+    width: 450px;
+  }
+  
+  #saveAsOpts .saveAsOpt {
+    padding-right: 20px;
+  }
+}

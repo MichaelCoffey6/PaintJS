@@ -1,0 +1,156 @@
+/* SECTION */
+
+#brushesActSection,
+#brushesExtSection {
+  background-color: #f5f6f7;
+  top: 100%;
+  position: absolute;
+  padding: 6px 8px 3px 8px;
+  display: none;
+  box-shadow: 2px 2px 2px 0 lightgray;
+  gap: 5px;
+  grid-template-rows: calc(3.8lh + 12px) 1lh;
+}
+
+#brushesExtSection {
+  position: static;
+  display: grid;
+  padding: 3px 3px 0 3px;
+  box-shadow: none;
+}
+
+#brushesActSection footer,
+#brushesExtSection footer {
+  text-align: center;
+  padding: 0;
+}
+
+#brushesExtSection button {
+  border: none;
+}
+
+#brushesActSection > div,
+#brushesExtSection > div {
+  position: relative;
+  display: grid;
+  grid-template-rows: calc(1.8lh + 12px) 2lh;
+}
+
+#brushesActSection > div:hover .mainBtn,
+#brushesActSection #brushesExtInp:checked ~ .mainBtn,
+#brushesExtSection > div:hover .mainBtn,
+#brushesExtInpExt:checked ~ #app #brushesExtSection .mainBtn {
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#brushesActSection > div:hover .extendAction,
+#brushesActSection #brushesExtInp:checked ~ .extendAction,
+#brushesExtSection > div:hover .extendAction,
+#brushesExtInpExt:checked ~ #app #brushesExtSection .extendAction {
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 0 0 0 #a8d2fd
+}
+
+#brushesActSection .mainBtn,
+#brushesExtSection .mainBtn {
+  background-color: #0000;
+  width: 100%;
+  padding: 0;
+  display: grid;
+  place-content: center;
+}
+
+#brushesActSection .mainBtn:hover,
+#brushesActSection .extendAction:hover,
+#brushesExtSection .mainBtn:hover,
+#brushesExtSection .extendAction:hover {
+  background-color: #edf4fc;
+}
+
+#brushesActSection #brushesExtInp:checked ~ .mainBtn,
+#brushesExtInpExt:checked ~ #app #brushesExtSection .mainBtn {
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#brushesActSection #brushesExtInp:checked ~ .extendAction,
+#brushesExtInpExt:checked ~ #app #brushesExtSection .extendAction {
+  background-color: #c9e0f7;
+}
+
+#brushesActSection #brushesExtInp:checked ~ .extendOpts,
+#brushesExtInpExt:checked ~ #app #extendBrushesOpts {
+  display: grid;
+}
+
+#brushesActSection .extendOpts,
+#extendBrushesOpts {
+  position: absolute;
+  background-color: #fff;
+  top: 100%;
+  padding: 4px;
+  display: none;
+  grid-template-columns: repeat(4, auto);
+  box-shadow:
+    inset -2px 2px 0 0 #d7d7d7,
+    inset 2px -2px 0 0 #d7d7d7
+}
+
+#extendBrushesOpts {
+  top: calc((1lh + 12px) * -1);
+}
+
+#brushesActSection .extendOpts button:hover,
+#extendBrushesOpts button:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#brushesActSection .extendOpts button,
+#extendBrushesOpts button {
+  background-color: #0000;
+  padding: 5px;
+  display: flex;
+  aspect-ratio: 1 / 1;
+}
+
+#brushesActSection .extendOpts img,
+#extendBrushesOpts img {
+  height: calc(1.8lh + 6px);
+}
+
+#brushesActSection .mainBtn img,
+#brushesExtSection .mainBtn img {
+  height: calc(1.8lh + 6px);
+}
+
+#brushesActSection .extendAction,
+#brushesExtSection .extendAction {
+  background-color: #0000;
+  padding: 0 5px;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 1lh 1lh;
+}
+
+#brushesActSection .extendAction picture,
+#brushesExtSection .extendAction picture {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+#brushesActSection .extendAction img,
+#brushesExtSection .extendAction img {
+  width: 0.5lh;
+  margin-top: 0.2lh;
+}

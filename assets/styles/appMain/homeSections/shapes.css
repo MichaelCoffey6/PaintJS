@@ -1,0 +1,240 @@
+/* EXTEND SECTION */
+
+#extendShapesSectionInp:checked ~ #app #extendShapesSection {
+  background-color: #c9e0f7;
+}
+
+#extendShapesSectionInp:checked ~ #app #extendShapesSection .iconSection {
+  background-color: #edf4fc;
+}
+
+#extendShapesSection {
+  text-align: center;
+  justify-content: center;
+  background-color: #edf4fc;
+  padding: 8px 3px 0 3px;
+  display: grid;
+  grid-template-rows: calc(1.8lh + 7px) 1lh 1lh 1lh;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#extendShapesSection .iconSection {
+  aspect-ratio: 1 / 1;
+  width: 45px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 5px;
+  background-color: #f5f6f7;
+  border: 2px solid #a8d2fd;
+}
+
+#extendShapesSection .iconSection img {
+  width: 25px;
+}
+
+#extendShapesSection .extendAction {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+#extendShapesSection .extendAction img {
+  width: 0.5lh;
+  margin-top: 0.2lh;
+}
+
+
+/* SECTION */
+
+#extendShapesSectionInp:checked ~ #app #shapesSection {
+  display: grid;
+}
+
+#shapesSection {
+  background-color: #f5f6f7;
+  top: 100%;
+  position: absolute;
+  padding: 6px 8px 3px 8px;
+  display: none;
+  width: min-content;
+  box-shadow: 2px 2px 2px 0 lightgray;
+  gap: 5px;
+  grid-template-rows: calc(3.8lh + 12px) auto;
+}
+
+#shapesSection footer {
+  text-align: center;
+  padding: 0;
+}
+
+#shapesSection .actionBtns {
+  display: grid;
+  column-gap: 3px;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: auto auto;
+  grid-template-areas: 
+    'shapesCont smlBtn1'
+    'shapesCont smlBtn2'
+    'shapesCont smlBtn3'
+}
+
+#shapesCont {
+  grid-area: shapesCont;
+  background-color: #fff;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(6, auto);
+  box-shadow: 
+    inset 2px -2px 0 0 #d7d7d7,
+    inset -2px 2px 0 0 #d7d7d7;
+}
+
+#shapesCont button {
+  background-color: #0000;
+  display: flex;
+  padding: 0;
+  aspect-ratio: 1 / 1;
+}
+
+#shapesCont img {
+  height: 1lh;
+  width: 1lh;
+  margin: auto;
+}
+
+#shapesCont button:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#shapesCont button:focus {
+  background-color: #c9e0f7;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#shapesSection .smlBtn {
+  padding: 0 5px;
+  width: fit-content;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  background-color: #0000;
+}
+
+#shapesSection .smlBtn:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#shapesSection .smlBtn:focus {
+  background-color: #c9e0f7;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#shapesSection .smlBtn picture {
+  height: 1lh;
+}
+
+#shapesSection .smlBtn img {
+  height: 100%;
+}
+
+#shapesSection .smlBtn .extendAction {
+  display: flex;
+  align-items: center;
+  padding-left: 3px;
+}
+
+#shapesSection .smlBtn .extendAction img {
+  width: 0.5lh;
+  height: auto;
+}
+
+#shapesSection .smlExtBtnCont {
+  position: relative;
+  display: flex;
+}
+
+#shapesSection .smlExtBtnCont .smlBtn {
+  height: 100%;
+}
+
+#shapesSection #extendOutlineInp:checked ~ .smlBtn,
+#shapesSection #extendFillInp:checked ~ .smlBtn {
+  background-color: #c9e0f7;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#shapesSection .smlExtBtnCont .extendOpts {
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  background-color: #fff;
+  padding: 4px;
+  display: none;
+  grid-template-rows: auto auto;
+  box-shadow:
+    inset -2px 2px 0 0 #d7d7d7,
+    inset 2px -2px 0 0 #d7d7d7
+}
+
+#extendOutlineInp:checked ~ .extendOpts,
+#extendFillInp:checked ~ .extendOpts {
+  display: block;
+}
+
+#shapesSection .smlExtBtnCont .extendOpts button {
+  background-color: #0000;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  justify-content: left;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+#shapesSection .smlExtBtnCont .extendOpts button:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#shapesSection .smlExtBtnCont .extendOpts button:hover picture {
+  border-right-color: #0000;
+}
+
+#shapesSection .smlExtBtnCont .extendOpts picture {
+  padding: 4px;
+  padding-left: 6px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  border-right: 2px solid #d7d7d7
+}
+
+#shapesSection .smlExtBtnCont .extendOpts img {
+  width: 100%;
+  object-fit: contain;
+}
+
+#shapesSection .smlExtBtnCont .extendOpts span {
+  padding: 0;
+  padding-left: 8px;
+  padding-right: 18px;
+  text-align: left;
+  align-content: center;
+  white-space: nowrap;
+}

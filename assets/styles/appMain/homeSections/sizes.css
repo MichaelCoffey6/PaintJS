@@ -1,0 +1,130 @@
+/* SECTION */
+
+#sizesActSection,
+#sizesExtSection {
+  background-color: #f5f6f7;
+  top: 100%;
+  position: absolute;
+  padding: 6px 8px 3px 8px;
+  display: none;
+  box-shadow: 2px 2px 2px 0 lightgray;
+  gap: 5px;
+  grid-template-rows: calc(3.8lh + 12px) 1lh;
+}
+
+#sizesExtSection {
+  position: static;
+  display: grid;
+  padding: 3px 3px 0 3px;
+  box-shadow: none;
+}
+
+#sizesActSection footer,
+#sizesExtSection footer {
+  text-align: center;
+  padding: 0;
+}
+
+#sizesActSection label,
+#sizesExtSection label {
+  position: relative;
+  background-color: #0000;
+  display: grid;
+  padding: 0;
+  grid-template-rows: calc(1.8lh + 12px) 1lh 1lh;
+}
+
+#sizesActSection label:hover,
+#sizesExtSection label:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+
+#sizesExtInp:checked ~ #app #sizesActSection label,
+#sizesExtInpExt:checked ~ #app #sizesExtSection label {
+  background-color: #c9e0f7;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#sizesActSection .iconSection,
+#sizesExtSection .iconSection {
+  background-color: #0000;
+  width: 100%;
+  padding: 0 8px;
+  display: grid;
+  place-content: center;
+}
+
+#sizesActSection .iconSection img,
+#sizesExtSection .iconSection img {
+  height: calc(1.8lh + 6px);
+}
+
+#sizesActSection span,
+#sizesExtSection span {
+  margin: 0 auto;
+}
+
+#sizesActSection .extendAction,
+#sizesExtSection .extendAction {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+#sizesActSection .extendAction img,
+#sizesExtSection .extendAction img {
+  width: 0.5lh;
+  margin-top: 0.2lh;
+}
+
+#extendSizesOpts,
+#sizesActSection .extendOpts {
+  position: absolute;
+  top: 100%;
+  display: none;
+  height: auto;
+  padding: 4px;
+  background-color: #fff;
+  box-shadow:
+    inset -2px 2px 0 0 #d7d7d7,
+    inset 2px -2px 0 0 #d7d7d7
+}
+
+#sizesExtInp:checked ~ #app #sizesActSection .extendOpts {
+  display: flex;
+}
+
+#sizesExtInpExt:checked ~ #app #extendSizesOpts {
+  display: flex;
+}
+
+#extendSizesOpts button,
+#sizesActSection .extendOpts button {
+  background-color: #0000;
+  padding: 5px;
+  width: 150px;
+  height: 40px;
+  display: grid;
+  align-items: center;
+}
+
+#extendSizesOpts button:hover,
+#sizesActSection .extendOpts button:hover {
+  background-color: #edf4fc;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#extendSizesOpts span,
+#sizesActSection .extendOpts span {
+  height: var(--lineSize);
+  width: 100%;
+  background-color: #000;
+}

@@ -1,0 +1,34 @@
+@import "./homeSections/clipboard.css";
+@import "./homeSections/image.css";
+@import "./homeSections/tools.css";
+@import "./homeSections/brushes.css";
+@import "./homeSections/shapes.css";
+@import "./homeSections/sizes.css";
+@import "./homeSections/colors.css";
+
+#homeSections {
+  position: relative;
+  display: none;
+  gap: 5px;
+}
+
+#homeExtSections {
+  display: flex;
+  gap: 5px;
+}
+
+#homeSections button {
+  border: 0;
+}
+
+#extendSections .sectionSeparator,
+#actionSections .sectionSeparator {
+  height: calc(4.8lh + 17px);
+  padding: 0 1px;
+  display: grid;
+  background-color: #d7d7d7;
+}
+
+#actionSections .sectionSeparator {
+  display: none;
+}

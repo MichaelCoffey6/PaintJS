@@ -1,0 +1,52 @@
+#tabs {
+  grid-area: tabs;
+  display: grid;
+  grid-template-columns: 75px 75px 75px 1fr;
+}
+
+#tabs .tab {
+  place-content: center;
+  display: flex;
+  padding: 7px;
+  box-shadow:
+    inset -2px 2px 0 0 #0000,
+    inset 2px 0 0 0 #0000,
+    inset 0 -2px 0 0 #d7d7d7
+}
+
+#voidTab {
+  box-shadow: inset 0 -2px 0 0 #d7d7d7
+}
+
+#homeTabChk:checked ~ #app #homeTab {
+  background-color: #f5f6f7;
+  box-shadow:
+    inset -2px 2px 0 0 #d7d7d7,
+    inset 2px 0 0 0 #d7d7d7
+}
+
+#homeTabChk:not(:checked) ~ #app #homeExtSections {
+  display: none;
+}
+
+#viewTabChk:checked ~ #app #viewTab {
+  background-color: #f5f6f7;
+  box-shadow:
+    inset -2px 2px 0 0 #d7d7d7,
+    inset 2px 0 0 0 #d7d7d7
+}
+
+#homeTabChk:checked ~ #app #homeSections,
+#homeTabChk:checked ~ #app #homeExtSections {
+  display: flex;
+}
+
+#viewTabChk:checked ~ #app #viewSections,
+#viewTabChk:checked ~ #app #viewExtSections {
+  display: flex;
+}
+
+#fileTab {
+  color: #fff;
+  background-color: #1979ca;
+}

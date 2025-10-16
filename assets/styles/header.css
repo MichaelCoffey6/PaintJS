@@ -1,0 +1,39 @@
+#appHeader nav {
+  display: flex;
+  gap: 7px;
+  padding: 5px;
+}
+
+#appHeader nav section {
+  height: 1lh;
+}
+
+#appHeader img {
+  width: 1lh;
+}
+
+.shortcut {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 1lh;
+  background-color: #0000;
+}
+
+#titleInp {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: #0000;
+  font-family: inherit;
+}
+
+#titleInp::placeholder {
+  color: #000;
+}
+
+#appHeader .appHeaderSeparator {
+  height: 1lh;
+  width: 2px;
+  background-color: #d7d7d7;
+}

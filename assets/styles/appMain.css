@@ -1,0 +1,79 @@
+@import "./appMain/tabs.css";
+@import "./appMain/fileTab.css";
+@import "./appMain/homeTab.css";
+@import "./appMain/viewTab.css";
+@import "./appMain/workspace.css";
+
+#appMain {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  grid-template-areas:
+    'tabs'
+    'extendSections'
+    'actionSections'
+    'workspace';
+}
+
+#actions {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+#actionSections {
+  grid-area: actionSections;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  height: 0;
+  background-color: #f5f6f7;
+  box-shadow: inset 0 -2px 0 0 #d7d7d7;
+}
+
+#extendSections {
+  grid-area: extendSections;
+  padding: 5px;
+  padding-bottom: 7px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f5f6f7;
+  box-shadow: inset 0 -2px 0 0 #d7d7d7;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 'scrollLeftBtn scrollCont scrollRightBtn';
+}
+
+#scrollCont {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#scrollLeftBtn {
+  padding: 4px;
+  background-color: #edf4fc;
+  border: 2px solid #95c2ef;
+  display: none;
+}
+
+#scrollRightBtn {
+  padding: 4px;
+  background-color: #edf4fc;
+  border: 2px solid #95c2ef;
+  display: none;
+}
+
+#scrollLeftBtn img {
+  width: 0.5lh;
+  transform: rotate(90deg);
+}
+
+#scrollRightBtn img {
+  width: 0.5lh;
+  transform: rotate(-90deg);
+}

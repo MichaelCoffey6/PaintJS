@@ -1,0 +1,34 @@
+#appFooter {
+  border-top: 2px solid #d7d7d7;
+  display: flex;
+  padding: 5px;
+  gap: 5px;
+}
+
+#appFooter article {
+  gap: 5px;
+  width: 150px;
+  height: 1lh;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+#appFooter picture {
+  height: 1lh;
+  display: inline-block;
+}
+
+#appFooter img {
+  width: 1lh;
+}
+
+#appFooter span {
+  padding: 0;
+}
+
+#appFooter .appFooterSeparator {
+  height: 1lh;
+  width: 2px;
+  background-color: #d7d7d7;
+}
