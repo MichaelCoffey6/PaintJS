@@ -1,10 +1,11 @@
-@import "./homeSections/clipboard.css";
-@import "./homeSections/image.css";
-@import "./homeSections/tools.css";
-@import "./homeSections/brushes.css";
-@import "./homeSections/shapes.css";
-@import "./homeSections/sizes.css";
-@import "./homeSections/colors.css";
+@use "./homeSections/clipboard.css";
+@use "./homeSections/image.css";
+@use "./homeSections/tools.css";
+@use "./homeSections/brushes.css";
+@use "./homeSections/shapes.css";
+@use "./homeSections/sizes.css";
+@use "./homeSections/colors.css";
+@use "./homeSections/colorPicker.css";
 
 #homeSections {
   position: relative;
@@ -13,7 +14,7 @@
 }
 
 #homeExtSections {
-  display: flex;
+  display: none;
   gap: 5px;
 }
 

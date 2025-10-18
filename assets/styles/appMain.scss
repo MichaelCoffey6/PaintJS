@@ -1,8 +1,8 @@
-@import "./appMain/tabs.css";
-@import "./appMain/fileTab.css";
-@import "./appMain/homeTab.css";
-@import "./appMain/viewTab.css";
-@import "./appMain/workspace.css";
+@use "./appMain/tabs.css";
+@use "./appMain/fileTab.css";
+@use "./appMain/homeTab.scss";
+@use "./appMain/viewTab.scss";
+@use "./appMain/workspace.css";
 
 #appMain {
   width: 100%;
@@ -77,3 +77,4 @@
   width: 0.5lh;
   transform: rotate(-90deg);
 }
+

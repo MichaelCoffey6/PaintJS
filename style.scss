@@ -1,0 +1,45 @@
+@use "./assets/styles/header.css";
+@use "./assets/styles/appMain.scss";
+@use "./assets/styles/footer.css";
+@use "./assets/styles/mq.css";
+
+@font-face {
+  font-family: ArialExtern;
+  src: url('./assets/Arial.woff2')
+}
+
+@font-face {
+  font-family: SegoeExtern;
+  src: url('./assets/Segoe UI.woff2')
+}
+
+body {
+  margin: 0;
+}
+
+body * {
+  box-sizing: border-box;
+  font-size: 15px;
+  font-family: SegoeExtern, ArialExtern, Arial, Sans-Serif;
+  color: #333;
+}
+
+[disabled] {
+  pointer-events: none;
+}
+
+[disabled] img {
+  opacity: 0.5;
+}
+
+body [disabled] span {
+  color: #3338;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}

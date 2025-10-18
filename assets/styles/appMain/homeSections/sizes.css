@@ -96,6 +96,10 @@
     inset 2px -2px 0 0 #d7d7d7
 }
 
+#extendSizesOpts {
+  top: calc((1lh + 12px) * -1);
+}
+
 #sizesExtInp:checked ~ #app #sizesActSection .extendOpts {
   display: flex;
 }

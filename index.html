@@ -144,6 +144,10 @@
         sizesExtInp.checked = false
       }
       
+      if (!target.closest('#colorsSection') && !target.closest('[for=extendColorsSectionInp') && target !== extendColorsSectionInp) {
+        extendColorsSectionInp.checked = false
+      }
+      
       // extend smlBtn
       if (!target.closest('#rotateBtn') && !target.closest('[for=extendRotateInp]') && target !== extendRotateInp) {
         extendRotateInp.checked = false
@@ -164,6 +168,8 @@
     })
   </script>
   <script type="module">
+    const tabsInp = $$('[name=actionSection]')
+    
     const onScrollSections = ({ target }) => {
       const { scrollLeft, scrollWidth, clientWidth } = target
       
@@ -182,15 +188,14 @@
     
     scrollCont.addEventListener('scroll', onScrollSections)
     
-    scrollRightBtn.onclick = () => {
-      scrollCont.scroll(scrollCont.scrollWidth, 0)
-    }
+    tabsInp.forEach(input => input.addEventListener('change', () => {
+      onScrollSections({ target: scrollCont })
+    }))
     
+    scrollRightBtn.onclick = () => scrollCont.scroll(scrollCont.scrollWidth, 0)
     scrollLeftBtn.onclick = () => scrollCont.scroll(0, 0)
     
-    setTimeout(() => {
-      onScrollSections({ target: scrollCont })
-    }, 500)
+    setTimeout(() => onScrollSections({ target: scrollCont }), 500)
   </script>
 </head>
 <body>
@@ -224,8 +229,17 @@
   <input type="checkbox" id="sizesExtInpExt" name="sizesExtInp" hidden />
   <input type="checkbox" id="sizesExtInp" name="sizesExtInp" hidden />
   <input type="checkbox" id="extendColorsSectionInp" hidden />
+  <input type="checkbox" id="fullscreenChk" hidden />
   
   <div id="app">
+    <div id="fullscreenCont">
+      
+    </div>
+    
+    <div id="colorPickerCont">
+      <color-picker id="colorPicker"></color-picker>
+    </div>
+    
     <header id="appHeader">
       <nav>
         <section id="appIcon">
@@ -253,6 +267,13 @@
     </header>
     
     <main id="appMain">
+      <nav id="tabs">
+        <label for="fileTabChk" id="fileTab" class="tab">File</label>
+        <label for="homeTabChk" id="homeTab" class="tab">Home</label>
+        <label for="viewTabChk" id="viewTab" class="tab">View</label>
+        <span id="voidTab" class="tab"></span>
+      </nav>
+      
       <section id="fileSection">
         <header id="fileSectionTabs">
           <label for="fileTabChk" id="fileSectionTab" class="tab">File</label>
@@ -395,13 +416,6 @@
         
         <span id="voidBottomFileSection"></span>
       </section>
-      
-      <nav id="tabs">
-        <label for="fileTabChk" id="fileTab" class="tab">File</label>
-        <label for="homeTabChk" id="homeTab" class="tab">Home</label>
-        <label for="viewTabChk" id="viewTab" class="tab">View</label>
-        <span id="voidTab" class="tab"></span>
-      </nav>
       
       <section id="extendSections">
         <button id="scrollLeftBtn">
@@ -995,7 +1009,7 @@
         </article>
         
         <article id="viewSections">
-          
+          <label for="fullscreenChk">fullscreen</label>
         </article>
       </section>
     
