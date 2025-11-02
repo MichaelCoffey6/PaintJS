@@ -1,3 +1,43 @@
+@media (width > 450px) {
+  #appFooter #pointerXY {
+    display: flex;
+  }
+  
+  #appFooter #pointerXY + .appFooterSeparator {
+    display: block;
+  }
+}
+
+@media (width > 615px) {
+  #appFooter #selectionWH {
+    display: flex;
+  }
+  
+  #appFooter #selectionWH + .appFooterSeparator {
+    display: block;
+  }
+}
+
+@media (width > 790px) {
+  #appFooter #pageSize {
+    display: flex;
+  }
+  
+  #appFooter #pageSize + .appFooterSeparator {
+    display: block;
+  }
+}
+
+@media (width > 960px) {
+  #appFooter #fileSize {
+    display: flex;
+  }
+  
+  #appFooter #fileSize + .appFooterSeparator {
+    display: block;
+  }
+}
+
 @media (width > 530px) {
   #colorsSection {
     grid-template-rows: calc(3.8lh + 12px) auto;
@@ -26,27 +66,6 @@
 }
 
 @media (width > 750px) {
-  #actionSections .sectionSeparator {
-    display: grid;
-  }
-  
-  #appMain #extendSections {
-    display: none;
-  }
-  
-  #appMain #actionSections {
-    height: auto;
-    padding: 5px;
-    padding-bottom: 7px;
-  }
-  
-  #clipboardSection, #imageSection, #toolsSection, #brushesActSection, #shapesSection, #sizesActSection, #colorsSection {
-    position: initial;
-    padding: 3px 3px 0 3px;
-    box-shadow: none;
-    display: grid;
-  }
-  
   #fileOpts .fileOpt {
     width: 260px;
   }

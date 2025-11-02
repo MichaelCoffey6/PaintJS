@@ -1,3 +1,4 @@
+@use "./homeSections/extendSections.css";
 @use "./homeSections/clipboard.css";
 @use "./homeSections/image.css";
 @use "./homeSections/tools.css";
@@ -8,12 +9,6 @@
 @use "./homeSections/colorPicker.css";
 
 #homeSections {
-  position: relative;
-  display: none;
-  gap: 5px;
-}
-
-#homeExtSections {
   display: none;
   gap: 5px;
 }

@@ -1,0 +1,43 @@
+#zoomSection .actionBtns {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+#zoomSection button {
+  border: none;
+  padding: 0;
+  background-color: #0000;
+  display: grid;
+  grid-template-rows: calc(1.8lh + 12px) 2lh;
+}
+
+#zoomSection button:hover {
+  background-color: #edf4fc;
+  box-shadow:
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#zoomSection button:focus {
+  background-color: #c9e0f7;
+  box-shadow:
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#zoomSection span {
+  text-align: center;
+  padding: 0 6px;
+}
+
+#zoomSection picture {
+  background-color: #0000;
+  width: 100%;
+  padding: 0 3px;
+  display: grid;
+  place-content: center;
+}
+
+#zoomSection img {
+  height: calc(1.8lh + 6px);
+}

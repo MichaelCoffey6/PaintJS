@@ -1,132 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html style="--actionsWidth: 340px">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./assets/icon.ico" type="image/x-icon" />
   <title>PaintJS</title>
-  <style>
-    @import "./style.css";
-  </style>
+  <link rel="stylesheet" href="./style.css" type="text/css" />
   <script>
-    const $ = (sel, ctx = document) => ctx.querySelector(sel)
-    const $$ = (sel, ctx = document) => ctx.querySelectorAll(sel)
-    const cl = (...log) => console.log(...log)
+    window.$ = (sel, ctx = document) => ctx.querySelector(sel)
+    window.$$ = (sel, ctx = document) => ctx.querySelectorAll(sel)
+    window.cl = (...log) => console.log(...log)
   </script>
-  <script type="module">
-    titleInp.style.fieldSizing = "content"
-    
-    const { fieldSizing } = getComputedStyle(titleInp)
-    
-    if (fieldSizing !== 'content') {
-      const titlePolyfill = () => {
-        titleInp.style.width = 0
-        
-        const { scrollWidth, style } = titleInp
-        style.width = (scrollWidth + 5) + "px"
-      }
-      
-      titlePolyfill()
-      
-      titleInp.addEventListener('input', titlePolyfill)
-    }
-  </script>
-  <script type="module">
-    const ruleScale = 100
-    workspace.style.setProperty('--rule-scale', `${ruleScale}px`)
-    
-    const getRuleSections = ruleSectionsLen => {
-      const ruleSections = []
-      
-      for (let i = 0; i < ruleSectionsLen; i++) {
-        const ruleSeparator = document.createElement('span')
-        const ruleSection = ruleSectionTmpl.content.cloneNode(true)
-        const ruleNumber = $('.ruleNumber', ruleSection)
-        
-        ruleNumber.innerText = i * ruleScale
-        ruleSeparator.classList.add('ruleSeparator')
-        ruleSections.push(ruleSeparator, ruleSection)
-      }
-      
-      return ruleSections
-    }
-    
-    const setRuleSections = () => {
-      const ruleSectionsX = getRuleSections(workspace.clientWidth / ruleScale)
-      const ruleSectionsY = getRuleSections(workspace.clientHeight / ruleScale)
-      ruleX.replaceChildren.apply(ruleX, ruleSectionsX)
-      ruleY.replaceChildren.apply(ruleY, ruleSectionsY)
-    }
-    
-    setRuleSections()
-  </script>
+  <script type="module" src="./app.js"></script>
   <script type="module">
     window.addEventListener('pointerover', ({ target }) => {
       const clipboardBigBtn = $('#clipboardSection .bigBtn')
       const imageBigBtn = $('#imageSection .bigBtn')
       
-      if (target.closest('#clipboardSection .bigBtn')) {
+      if (clipboardBigBtn.contains(target)) {
         clipboardBigBtn.classList.remove('nohover')
       } 
       
-      if (target.closest('#imageSection .bigBtn')) {
+      if (imageBigBtn.contains(target)) {
         imageBigBtn.classList.remove('nohover')
       }
       
-      if (target.closest('#saveAsBtnCont')) {
+      if (saveAsBtnCont.contains(target)) {
         saveAsOptsBtns.scrollTop = 0
         saveAsOpts.classList.add('visible')
         saveAsBtnCont.classList.remove('extend')
-        return
-      }
-      
-      if (target.closest('#saveAsOpts')) {
+      } else if (saveAsOpts.contains(target)) {
         saveAsBtnCont.classList.add('extend')
-        return
+      } else {
+        saveAsOptsBtns.scrollTop = 0
+        saveAsOpts.classList.remove('visible')
+        saveAsBtnCont.classList.remove('extend')
       }
       
-      saveAsOptsBtns.scrollTop = 0
-      saveAsOpts.classList.remove('visible')
-      saveAsBtnCont.classList.remove('extend')
     })
   </script>
   <script type="module">
-    window.addEventListener('click', ({ target }) => {
+    import { State } from "./src/state.js"
+    import { onScrollSections } from "./src/appMain/homeTab/scrollSections.js"
+    
+    window.addEventListener('click', async ({ target }) => {
       const clipboardBigBtn = $('#clipboardSection .bigBtn')
       const imageBigBtn = $('#imageSection .bigBtn')
 
       // nohover
-      if (target.closest('#clipboardSection .extendOpts')) {
+      if ($('#clipboardSection .extendOpts').contains(target)) {
         clipboardBigBtn.classList.add('nohover')
       } else {
         clipboardBigBtn.classList.remove('nohover')
       }
       
-      if (target.closest('#imageSection .bigBtn .extendOpts')) {
+      if ($('#imageSection .bigBtn .extendOpts').contains(target)) {
         imageBigBtn.classList.add('nohover')
       } else {
         imageBigBtn.classList.remove('nohover')
       }
       
       // extend bigBtn
-      if (!target.closest('#clipboardSection .extendAction') && !target.closest('[for=clipboardExtBigInp]') && target !== clipboardExtBigInp) {
+      if (!$('#clipboardSection .extendAction').contains(target) && target !== clipboardExtBigInp) {
         clipboardExtBigInp.checked = false
       }
       
-      if (!target.closest('#imageSection .bigBtn .extendAction') && !target.closest('[for=imageExtBigInp]') && target !== imageExtBigInp) {
+      if (!$('#imageSection .bigBtn .extendAction').contains(target) && target !== imageExtBigInp) {
         imageExtBigInp.checked = false
       }
       
       // extend actionSection
-      if (!target.closest('#clipboardSection') && !target.closest('[for=extendClipboardSectionInp') && target !== extendClipboardSectionInp) {
+      if (!clipboardSection.contains(target) && !extendClipboardSection.contains(target) && target !== extendClipboardSectionInp) {
         extendClipboardSectionInp.checked = false
       }
       
-      if (!target.closest('#imageSection') && !target.closest('[for=extendImageSectionInp') && target !== extendImageSectionInp) {
+      if (!imageSection.contains(target) && !extendImageSection.contains(target) && target !== extendImageSectionInp) {
         extendImageSectionInp.checked = false
       }
       
-      if (!target.closest('#toolsSection') && !target.closest('[for=extendToolsSectionInp') && target !== extendToolsSectionInp) {
+      if (!toolsSection.contains(target) && !extendToolsSection.contains(target) && target !== extendToolsSectionInp) {
         extendToolsSectionInp.checked = false
       }
       
@@ -135,7 +87,7 @@
         brushesExtInp.checked = false
       }
       
-      if (!target.closest('#shapesSection') && !target.closest('[for=extendShapesSectionInp') && target !== extendShapesSectionInp) {
+      if (!shapesSection.contains(target) && !extendShapesSection.contains(target) && target !== extendShapesSectionInp) {
         extendShapesSectionInp.checked = false
       }
       
@@ -144,66 +96,60 @@
         sizesExtInp.checked = false
       }
       
-      if (!target.closest('#colorsSection') && !target.closest('[for=extendColorsSectionInp') && target !== extendColorsSectionInp) {
+      if (!colorsSection.contains(target) && !extendColorsSection.contains(target) && target !== extendColorsSectionInp) {
         extendColorsSectionInp.checked = false
       }
       
       // extend smlBtn
-      if (!target.closest('#rotateBtn') && !target.closest('[for=extendRotateInp]') && target !== extendRotateInp) {
+      if (!rotateBtn.contains(target) && target !== extendRotateInp) {
         extendRotateInp.checked = false
       }
       
-      if (!target.closest('#outlineBtn') && !target.closest('[for=extendOutlineInp]') && target !== extendOutlineInp) {
+      if (!outlineBtn.contains(target) && target !== extendOutlineInp) {
         extendOutlineInp.checked = false
       }
       
-      if (!target.closest('#fillShapeBtn') && !target.closest('[for=extendFillInp]') && target !== extendFillInp) {
+      if (!fillShapeBtn.contains(target) && target !== extendFillInp) {
         extendFillInp.checked = false
       }
       
       // extend fileSection
-      if (!target.closest('#fileSection') && target !== fileTab && target !== fileTabChk) {
+      if (!fileSection.contains(target) && target !== fileTab && target !== fileTabChk) {
         fileTabChk.checked = false
+      }
+      
+      
+      // colorPicker 
+      if (editColorsBtn.contains(target)) {
+        extendColorsSectionInp.checked = false
+        colorPickerCont.style.display = "flex"
+      }
+      
+      if (target.closest('.extendSectionInp:checked')) {
+        const { id, dataset } = target
+        const { section } = dataset
+        const currentExtButton = $(`[for=${id}]`)
+        const currentExtSection = window[section]
+
+        Object.assign(State, currentExtSection && currentExtButton ? {
+          currentExtButton,
+          currentExtSection
+        } : {
+          currentExtButton: null,
+          currentExtSection: null
+        })
+        
+        onScrollSections({ target: scrollCont })
       }
     })
   </script>
-  <script type="module">
-    const tabsInp = $$('[name=actionSection]')
-    
-    const onScrollSections = ({ target }) => {
-      const { scrollLeft, scrollWidth, clientWidth } = target
-      
-      if (scrollLeft > 0) {
-        scrollLeftBtn.style.display = "block"
-      } else {
-        scrollLeftBtn.style.display = ""
-      }
-      
-      if (Math.ceil(scrollLeft) + clientWidth >= scrollWidth) {
-        scrollRightBtn.style.display = ""
-      } else {
-        scrollRightBtn.style.display = "block"
-      }
-    }
-    
-    scrollCont.addEventListener('scroll', onScrollSections)
-    
-    tabsInp.forEach(input => input.addEventListener('change', () => {
-      onScrollSections({ target: scrollCont })
-    }))
-    
-    scrollRightBtn.onclick = () => scrollCont.scroll(scrollCont.scrollWidth, 0)
-    scrollLeftBtn.onclick = () => scrollCont.scroll(0, 0)
-    
-    setTimeout(() => onScrollSections({ target: scrollCont }), 500)
-  </script>
 </head>
 <body>
-  <template id="ruleSectionTmpl">
-    <section class="ruleSection">
-      <span class="ruleNumber"></span>
+  <template id="rulerSectionTmpl">
+    <section class="rulerSection">
+      <span class="rulerNumber"></span>
       
-      <span class="ruleLines">
+      <span class="rulerLines">
         <span></span>
         <span></span>
         <span></span>
@@ -217,24 +163,27 @@
     </section>
   </template>
   
-  <input type="checkbox" id="ruleChk" hidden checked />
   <input type="checkbox" id="fileTabChk" hidden />
-  <input type="radio" id="homeTabChk" name="actionSection" hidden checked />
-  <input type="radio" id="viewTabChk" name="actionSection" hidden />
-  <input type="checkbox" id="extendClipboardSectionInp" hidden />
-  <input type="checkbox" id="extendImageSectionInp" hidden />
-  <input type="checkbox" id="extendToolsSectionInp" hidden />
-  <input type="checkbox" id="brushesExtInpExt" name="brushesExtInp" hidden />
-  <input type="checkbox" id="extendShapesSectionInp" hidden />
-  <input type="checkbox" id="sizesExtInpExt" name="sizesExtInp" hidden />
+  <input type="radio" id="homeTabChk" name="actionSectionInp" hidden checked />
+  <input type="radio" id="viewTabChk" name="actionSectionInp" hidden />
+  <input type="file" id="openFile" accept="image/jpeg,image/png,image/webp" hidden />
+  <input type="checkbox" id="extendClipboardSectionInp" class="extendSectionInp" data-section="clipboardSection" hidden />
+  <input type="checkbox" id="extendImageSectionInp" class="extendSectionInp" data-section="imageSection" hidden />
+  <input type="checkbox" id="extendToolsSectionInp" class="extendSectionInp" data-section="toolsSection" hidden />
+  <input type="checkbox" id="brushesExtInpExt" class="extendSectionInp" name="brushesExtInp" data-section="extendBrushesOpts" hidden />
+  <input type="checkbox" id="extendShapesSectionInp" class="extendSectionInp" data-section="shapesSection" hidden />
+  <input type="checkbox" id="sizesExtInpExt" class="extendSectionInp" name="sizesExtInp" data-section="extendSizesOpts" hidden />
   <input type="checkbox" id="sizesExtInp" name="sizesExtInp" hidden />
-  <input type="checkbox" id="extendColorsSectionInp" hidden />
+  <input type="checkbox" id="extendColorsSectionInp" class="extendSectionInp" data-section="colorsSection" hidden />
   <input type="checkbox" id="fullscreenChk" hidden />
+  <input type="checkbox" id="rulersChk" hidden checked />
+  <input type="checkbox" id="gridLinesChk" hidden />
+  <input type="checkbox" id="statusBarChk" hidden checked />
   
   <div id="app">
-    <div id="fullscreenCont">
+    <label for="fullscreenChk" id="fullscreenCont">
       
-    </div>
+    </label>
     
     <div id="colorPickerCont">
       <color-picker id="colorPicker"></color-picker>
@@ -250,11 +199,19 @@
         
         <section id="shortcuts">
           <button id="saveShortBtn" class="shortcut">
-            <img src="./assets/icons/save.png" alt="'save' icon button" />
+            <img src="./assets/icons/save.png" alt="'save' icon" />
           </button>
           
-          <button id="saveAsShortBtn" class="shortcut">
-            <img src="./assets/icons/saveAs.png" alt="'save as' icon button" />
+          <button id="saveAsShortBtn" class="shortcut" hidden>
+            <img src="./assets/icons/saveAs.png" alt="'save as' icon" />
+          </button>
+          
+          <button id="undoBtn" class="shortcut" disabled>
+            <img src="./assets/icons/redo_undo_btn.png" alt="'undo' icon" />
+          </button>
+          
+          <button id="redoBtn" class="shortcut" disabled>
+            <img src="./assets/icons/redo_undo_btn.png" alt="'redo' icon" />
           </button>
         </section>
         
@@ -289,13 +246,13 @@
             <span>New</span>
           </button>
           
-          <button id="openBtn" class="fileOpt">
+          <label for="openFile" id="openBtn" class="fileOpt">
             <picture>
               <img src="./assets/icons/open.png" alt="'open' icon" />
             </picture>
             
             <span>Open</span>
-          </button>
+          </label>
           
           <button id="saveBtn" class="fileOpt">
             <picture>
@@ -398,18 +355,17 @@
           <article id="recentPictures">
             <header>Recent pictures</header>
             
-            <ol>
-              <script>
-                const { parentElement: ol } = document.currentScript
-                ol.replaceChildren.apply(
-                  ol,
+            <ol id="recentPicturesList">
+              <script>(() => {
+                recentPicturesList.replaceChildren.apply(
+                  recentPicturesList,
                   Array.from({ length: 8 }, (_, i) => {
                     const li = document.createElement('li')
                     li.innerText = "Untitled.png"
                     return li
                   })
                 )
-              </script>
+              })()</script>
             </ol>
           </article>
         </aside>
@@ -417,13 +373,13 @@
         <span id="voidBottomFileSection"></span>
       </section>
       
-      <section id="extendSections">
-        <button id="scrollLeftBtn">
-          <img src="./assets/icons/extend.png" alt="'extend' icon" />
-        </button>
-        
-        <div id="scrollCont">
-          <article id="homeExtSections">
+      <div id="actions">
+        <section id="extendSections">
+          <button id="scrollLeftBtn">
+            <img src="./assets/icons/extend.png" alt="'extend' icon" />
+          </button>
+          
+          <article id="scrollCont">
             <label for="extendClipboardSectionInp" id="extendClipboardSection" class="extendSection">
               <picture class="iconSection">
                 <img src="./assets/icons/paste.png" alt="'paste' icon" />
@@ -460,7 +416,7 @@
               </picture>
             </label>
             
-            <section id="brushesExtSection" class="brushesSection">
+            <section id="brushesExtSection" class="brushesSection extendSection">
               <div>
                 <button class="mainBtn">
                   <img src="./assets/icons/brush.png" alt="'current brush' icon" />
@@ -490,7 +446,7 @@
               </picture>
             </label>
             
-            <section id="sizesExtSection" class="sizesSection">
+            <section id="sizesExtSection" class="sizesSection extendSection">
               <label for="sizesExtInpExt">
                 <picture class="iconSection">
                   <img src="./assets/icons/sizes.png" alt="'sizes' icon" />
@@ -507,518 +463,593 @@
             <div class="sectionSeparator"></div>
             
             <label for="extendColorsSectionInp" id="extendColorsSection" class="extendSection">
-              <picture class="iconSection">
-                <img src="./assets/icons/colors.png" alt="'colors' icon" />
-              </picture>
-              
-              <span>Colors</span>
-              
-              <picture class="extendAction">
-                <img src="./assets/icons/extend.png" alt="'extend' icon" />
-              </picture>
-            </label>
-          </article>
-        </div>
-        
-        <button id="scrollRightBtn">
-          <img src="./assets/icons/extend.png" alt="'extend' icon" />
-        </button>
-      </section>
-      
-      <section id="actionSections">
-        <article id="homeSections">
-          <section id="clipboardSection">
-            <div class="actionBtns">
-              <div class="bigBtn">
-                <input type="checkbox" id="clipboardExtBigInp" hidden />
-                
-                <div role="dialog" class="extendOpts">
-                  <button>
-                    <picture>
-                      <img src="./assets/icons/paste.png" alt="'paste' icon" />
-                    </picture>
-                    
-                    <span>Paste</span>
-                  </button>
-                  
-                  <button>
-                    <picture>
-                      <img src="./assets/icons/pasteFrom.png" alt="'paste from' icon" />
-                    </picture>
-                    
-                    <span>Paste from</span>
-                  </button>
-                </div>
-                
-                <button class="mainBtn" disabled>
-                  <img src="./assets/icons/paste.png" alt="'paste' icon" />
-                </button>
-                
-                <label for="clipboardExtBigInp" class="extendAction">
-                  <span>Paste</span>
-                  
-                  <picture>
-                    <img src="./assets/icons/extend.png" alt="'extend' icon" />
-                  </picture>
-                </label>
-              </div>
-              
-              <button id="cutBtn" class="smlBtn" disabled>
-                <picture>
-                  <img src="./assets/icons/cut.png" alt="'cut' icon" />
-                </picture>
-                
-                <span>Cut</span>
-              </button>
-              
-              <button id="copyBtn" class="smlBtn" disabled>
-                <picture>
-                  <img src="./assets/icons/copy.png" alt="'copy' icon" />
-                </picture>
-                
-                <span>Copy</span>
-              </button>
-            </div>
-            
-            <footer>Clipboard</footer>
-          </section>
-          
-          <div class="sectionSeparator"></div>
-          
-          <section id="imageSection">
-            <div class="actionBtns">
-              <div class="bigBtn">
-                <input type="checkbox" id="imageExtBigInp" hidden />
-                
-                <div role="dialog" class="extendOpts">
-                  <button id="selectExtBtn">
-                    <picture>
-                      <img src="./assets/icons/select.png" alt="'paste' icon" />
-                    </picture>
-                    
-                    <span>Paste</span>
-                  </button>
-                </div>
-                
-                <button id="selectBtn" class="mainBtn">
-                  <img src="./assets/icons/select.png" alt="'select' icon" />
-                </button>
-                
-                <label for="imageExtBigInp" class="extendAction">
-                  <span>Select</span>
-                  
-                  <picture>
-                    <img src="./assets/icons/extend.png" alt="'extend' icon" />
-                  </picture>
-                </label>
-              </div>
-              
-              <button id="cropBtn" class="smlBtn" disabled>
-                <picture>
-                  <img src="./assets/icons/crop.png" alt="'crop' icon" />
-                </picture>
-                
-                <span>Crop</span>
-              </button>
-              
-              <button id="resizeBtn" class="smlBtn">
-                <picture>
-                  <img src="./assets/icons/resize.png" alt="'resize' icon" />
-                </picture>
-                
-                <span>Resize</span>
-              </button>
-              
-              <div id="rotateBtnCont" class="smlExtBtnCont">
-                <input type="checkbox" id="extendRotateInp" hidden />
-                
-                <label for="extendRotateInp" id="rotateBtn" class="smlBtn">
-                  <picture>
-                    <img src="./assets/icons/flip90.png" alt="'rotate' icon" />
-                  </picture>
-                  
-                  <span>Rotate</span>
-                  
-                  <picture class="extendAction">
-                    <img src="./assets/icons/extend.png" alt="'extend' icon" />
-                  </picture>
-                </label>
-                
-                <div role="dialog" class="extendOpts">
-                  <button>
-                    <picture>
-                      <img src="./assets/icons/flip90.png" alt="'rotate 90°' icon" />
-                    </picture>
-                    
-                    <span>Rotate right 90°</span>
-                  </button>
-                  
-                  <button>
-                    <picture>
-                      <img src="./assets/icons/flip-90.png" alt="'rotate -90°' icon" />
-                    </picture>
-                    
-                    <span>Rotate left 90°</span>
-                  </button>
-                  
-                  <button>
-                    <picture>
-                      <img src="./assets/icons/flip180.png" alt="'rotate 180°' icon" />
-                    </picture>
-                    
-                    <span>Rotate 180°</span>
-                  </button>
-                  
-                  <button>
-                    <picture>
-                      <img src="./assets/icons/flipV.png" alt="'flip vertical°' icon" />
-                    </picture>
-                    
-                    <span>Flip vertical</span>
-                  </button>
-                  
-                  <button>
-                    <picture>
-                      <img src="./assets/icons/flipH.png" alt="'flip horizontal' icon" />
-                    </picture>
-                    
-                    <span>Flip horizontal</span>
-                  </button>
-                  
-                </div>
-              </div>
-            </div>
-            
-            <footer>Image</footer>
-          </section>
-          
-          <div class="sectionSeparator"></div>
-          
-          <section id="toolsSection">
-            <div class="actionBtns">
-              <button id="drawBtn">
-                <img src="./assets/icons/draw.png" alt="'draw' icon" />
-              </button>
-              
-              <button id="fillBtn">
-                <img src="./assets/icons/fillDraw.png" alt="'fill' icon" />
-              </button>
-              
-              <button id="txtBtn">
-                <img src="./assets/icons/text.png" alt="'text' icon" />
-              </button>
-              
-              <button id="eraserBtn">
-                <img src="./assets/icons/eraser.png" alt="'eraser' icon" />
-              </button>
-              
-              <button id="pickerBtn">
-                <img src="./assets/icons/picker.png" alt="'picker' icon" />
-              </button>
-              
-              <button id="zoomBtn">
-                <img src="./assets/icons/zoom.png" alt="'zoom' icon" />
-              </button>
-            </div>
-            
-            <footer>Tools</footer>
-          </section>
-          
-          <div class="sectionSeparator"></div>
-          
-          <section id="brushesActSection" class="brushesSection">
-            <div>
-              <input type="checkbox" id="brushesExtInp" name="brushesExtInp" hidden />
-              
-              <div role="dialog" class="extendOpts">
-                <button>
-                  <img src="./assets/icons/brush.png" alt="'brush' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/pen1.png" alt="'pen 1' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/pen2.png" alt="'pen 2' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/airbrush.png" alt="'airbrush' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/oilBrush.png" alt="'oil brush' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/crayon.png" alt="'crayon' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/marker.png" alt="'marker' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/pencil.png" alt="'pencil' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/watercolor.png" alt="'watercolor' icon" />
-                </button>
-              </div>
-              
-              <button class="mainBtn">
-                <img src="./assets/icons/brush.png" alt="'current brush' icon" />
-              </button>
-              
-              <label for="brushesExtInp" class="extendAction extendBrushes">
-                <span>Brushes</span>
-                
-                <picture>
-                  <img src="./assets/icons/extend.png" alt="'extend' icon" />
-                </picture>
-              </label>
-            </div>
-          </section>
-          
-          <div id="extendBrushesOpts" role="dialog">
-            <button>
-              <img src="./assets/icons/brush.png" alt="'brush' icon" />
-            </button>
-            
-            <button>
-              <img src="./assets/icons/pen1.png" alt="'pen 1' icon" />
-            </button>
-            
-            <button>
-              <img src="./assets/icons/pen2.png" alt="'pen 2' icon" />
-            </button>
-            
-            <button>
-              <img src="./assets/icons/airbrush.png" alt="'airbrush' icon" />
-            </button>
-            
-            <button>
-              <img src="./assets/icons/oilBrush.png" alt="'oil brush' icon" />
-            </button>
-            
-            <button>
-              <img src="./assets/icons/crayon.png" alt="'crayon' icon" />
-            </button>
-            
-            <button>
-              <img src="./assets/icons/marker.png" alt="'marker' icon" />
-            </button>
-            
-            <button>
-              <img src="./assets/icons/pencil.png" alt="'pencil' icon" />
-            </button>
-            
-            <button>
-              <img src="./assets/icons/watercolor.png" alt="'watercolor' icon" />
-            </button>
-          </div>
-          
-          <div class="sectionSeparator"></div>
-          
-          <section id="shapesSection">
-            <div class="actionBtns">
-              <div id="shapesCont">
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-                
-                <button>
-                  <img src="./assets/icons/line.png" alt="'line' icon" />
-                </button>
-              </div>
-              
-              <div id="outlineBtnCont" class="smlExtBtnCont">
-                <input type="checkbox" id="extendOutlineInp" hidden />
-                
-                <label for="extendOutlineInp" id="outlineBtn" class="smlBtn">
-                  <picture>
-                    <img src="./assets/icons/stroke.png" alt="'outline shape' icon" />
-                  </picture>
-                  
-                  <span>Outline</span>
-                  
-                  <picture class="extendAction">
-                    <img src="./assets/icons/extend.png" alt="'extend' icon" />
-                  </picture>
-                </label>
-                
-                <div role="dialog" class="extendOpts">
-                  <button>
-                    <picture>
-                      <img src="./assets/icons/flip90.png" alt="'no outline' icon" />
-                    </picture>
-                    
-                    <span>No outline</span>
-                  </button>
-                </div>
-              </div>
-              
-              <div id="fillBtnCont" class="smlExtBtnCont">
-                <input type="checkbox" id="extendFillInp" hidden />
-                
-                <label for="extendFillInp" id="fillShapeBtn" class="smlBtn">
-                  <picture>
-                    <img src="./assets/icons/fill.png" alt="'fill shape' icon" />
-                  </picture>
-                  
-                  <span>Fill</span>
-                  
-                  <picture class="extendAction">
-                    <img src="./assets/icons/extend.png" alt="'extend' icon" />
-                  </picture>
-                </label>
-                
-                <div role="dialog" class="extendOpts">
-                  <button>
-                    <picture>
-                      <img src="./assets/icons/flip90.png" alt="'no outline' icon" />
-                    </picture>
-                    
-                    <span>No outline</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            <footer>Shapes</footer>
-          </section>
-          
-          <div class="sectionSeparator"></div>
-          
-          <section id="sizesActSection" class="sizesSection">
-            <label for="sizesExtInp">
-              <div role="dialog" class="extendOpts">
-                <button style="--lineSize: 1px">
-                  <span></span>
-                </button>
-              </div>
-              
-              <picture class="iconSection">
-                <img src="./assets/icons/sizes.png" alt="'sizes' icon" />
-              </picture>
-              
-              <span>Sizes</span>
-              
-              <picture class="extendAction">
-                <img src="./assets/icons/extend.png" alt="'extend' icon" />
-              </picture>
-            </label>
-          </section>
-          
-          <div id="extendSizesOpts" role="dialog">
-            <button style="--lineSize: 1px">
-              <span></span>
-            </button>
-          </div>
-          
-          <div class="sectionSeparator"></div>
-          
-          <section id="colorsSection">
-            <div class="actionBtns">
-              <input type="radio" id="color1Inp" name="colorsInp" hidden checked />
-              <input type="radio" id="color2Inp" name="colorsInp" hidden />
-              
-              <label for="color1Inp" id="color1Btn" class="bigBtn" style="--currentColor: #000">
-                <div class="colorCont">
-                  <div class="colorBg"></div>
-                </div>
-                
-                <span>Color<br />1</span>
-              </label>
-              
-              <label for="color2Inp" id="color2Btn" class="bigBtn" style="--currentColor: #fff">
-                <div class="colorCont">
-                  <div class="colorBg"></div>
-                </div>
-                
-                <span>Color<br />2</span>
-              </label>
-              
-              <button class="bigBtn">
                 <picture class="iconSection">
                   <img src="./assets/icons/colors.png" alt="'colors' icon" />
                 </picture>
                 
-                <span>Edit<br />colors</span>
+                <span>Colors</span>
+                
+                <picture class="extendAction">
+                  <img src="./assets/icons/extend.png" alt="'extend' icon" />
+                </picture>
+              </label>
+          </article>
+          
+          <button id="scrollRightBtn">
+            <img src="./assets/icons/extend.png" alt="'extend' icon" />
+          </button>
+        </section>
+        
+        <section id="actionSections">
+          <article id="homeSections">
+            <section id="clipboardSection">
+              <div class="actionBtns">
+                <div class="bigBtn">
+                  <input type="checkbox" id="clipboardExtBigInp" hidden />
+                  
+                  <div role="dialog" class="extendOpts">
+                    <button>
+                      <picture>
+                        <img src="./assets/icons/paste.png" alt="'paste' icon" />
+                      </picture>
+                      
+                      <span>Paste</span>
+                    </button>
+                    
+                    <button>
+                      <picture>
+                        <img src="./assets/icons/pasteFrom.png" alt="'paste from' icon" />
+                      </picture>
+                      
+                      <span>Paste from</span>
+                    </button>
+                  </div>
+                  
+                  <button class="mainBtn" disabled>
+                    <img src="./assets/icons/paste.png" alt="'paste' icon" />
+                  </button>
+                  
+                  <label for="clipboardExtBigInp" class="extendAction">
+                    <span>Paste</span>
+                    
+                    <picture>
+                      <img src="./assets/icons/extend.png" alt="'extend' icon" />
+                    </picture>
+                  </label>
+                </div>
+                
+                <button id="cutBtn" class="smlBtn" disabled>
+                  <picture>
+                    <img src="./assets/icons/cut.png" alt="'cut' icon" />
+                  </picture>
+                  
+                  <span>Cut</span>
+                </button>
+                
+                <button id="copyBtn" class="smlBtn" disabled>
+                  <picture>
+                    <img src="./assets/icons/copy.png" alt="'copy' icon" />
+                  </picture>
+                  
+                  <span>Copy</span>
+                </button>
+              </div>
+              
+              <footer>Clipboard</footer>
+            </section>
+            
+            <div class="sectionSeparator"></div>
+            
+            <section id="imageSection">
+              <div class="actionBtns">
+                <div class="bigBtn">
+                  <input type="checkbox" id="imageExtBigInp" hidden />
+                  
+                  <div role="dialog" class="extendOpts">
+                    <button id="selectExtBtn">
+                      <picture>
+                        <img src="./assets/icons/select.png" alt="'paste' icon" />
+                      </picture>
+                      
+                      <span>Paste</span>
+                    </button>
+                  </div>
+                  
+                  <button id="selectBtn" class="mainBtn">
+                    <img src="./assets/icons/select.png" alt="'select' icon" />
+                  </button>
+                  
+                  <label for="imageExtBigInp" class="extendAction">
+                    <span>Select</span>
+                    
+                    <picture>
+                      <img src="./assets/icons/extend.png" alt="'extend' icon" />
+                    </picture>
+                  </label>
+                </div>
+                
+                <button id="cropBtn" class="smlBtn" disabled>
+                  <picture>
+                    <img src="./assets/icons/crop.png" alt="'crop' icon" />
+                  </picture>
+                  
+                  <span>Crop</span>
+                </button>
+                
+                <button id="resizeBtn" class="smlBtn">
+                  <picture>
+                    <img src="./assets/icons/resize.png" alt="'resize' icon" />
+                  </picture>
+                  
+                  <span>Resize</span>
+                </button>
+                
+                <div id="rotateBtnCont" class="smlExtBtnCont">
+                  <input type="checkbox" id="extendRotateInp" hidden />
+                  
+                  <label for="extendRotateInp" id="rotateBtn" class="smlBtn">
+                    <picture>
+                      <img src="./assets/icons/flip90.png" alt="'rotate' icon" />
+                    </picture>
+                    
+                    <span>Rotate</span>
+                    
+                    <picture class="extendAction">
+                      <img src="./assets/icons/extend.png" alt="'extend' icon" />
+                    </picture>
+                  </label>
+                  
+                  <div role="dialog" class="extendOpts">
+                    <button>
+                      <picture>
+                        <img src="./assets/icons/flip90.png" alt="'rotate 90°' icon" />
+                      </picture>
+                      
+                      <span>Rotate right 90°</span>
+                    </button>
+                    
+                    <button>
+                      <picture>
+                        <img src="./assets/icons/flip-90.png" alt="'rotate -90°' icon" />
+                      </picture>
+                      
+                      <span>Rotate left 90°</span>
+                    </button>
+                    
+                    <button>
+                      <picture>
+                        <img src="./assets/icons/flip180.png" alt="'rotate 180°' icon" />
+                      </picture>
+                      
+                      <span>Rotate 180°</span>
+                    </button>
+                    
+                    <button>
+                      <picture>
+                        <img src="./assets/icons/flipV.png" alt="'flip vertical°' icon" />
+                      </picture>
+                      
+                      <span>Flip vertical</span>
+                    </button>
+                    
+                    <button>
+                      <picture>
+                        <img src="./assets/icons/flipH.png" alt="'flip horizontal' icon" />
+                      </picture>
+                      
+                      <span>Flip horizontal</span>
+                    </button>
+                    
+                  </div>
+                </div>
+              </div>
+              
+              <footer>Image</footer>
+            </section>
+            
+            <div class="sectionSeparator"></div>
+            
+            <section id="toolsSection">
+              <div class="actionBtns">
+                <button id="drawBtn">
+                  <img src="./assets/icons/draw.png" alt="'draw' icon" />
+                </button>
+                
+                <button id="fillBtn">
+                  <img src="./assets/icons/fillDraw.png" alt="'fill' icon" />
+                </button>
+                
+                <button id="txtBtn">
+                  <img src="./assets/icons/text.png" alt="'text' icon" />
+                </button>
+                
+                <button id="eraserBtn">
+                  <img src="./assets/icons/eraser.png" alt="'eraser' icon" />
+                </button>
+                
+                <button id="pickerBtn">
+                  <img src="./assets/icons/picker.png" alt="'picker' icon" />
+                </button>
+                
+                <button id="zoomBtn">
+                  <img src="./assets/icons/zoom.png" alt="'zoom' icon" />
+                </button>
+              </div>
+              
+              <footer>Tools</footer>
+            </section>
+            
+            <div class="sectionSeparator"></div>
+            
+            <section id="brushesActSection" class="brushesSection">
+              <div>
+                <input type="checkbox" id="brushesExtInp" name="brushesExtInp" hidden />
+                
+                <div role="dialog" class="extendOpts">
+                  <button>
+                    <img src="./assets/icons/brush.png" alt="'brush' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/pen1.png" alt="'pen 1' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/pen2.png" alt="'pen 2' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/airbrush.png" alt="'airbrush' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/oilBrush.png" alt="'oil brush' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/crayon.png" alt="'crayon' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/marker.png" alt="'marker' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/pencil.png" alt="'pencil' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/watercolor.png" alt="'watercolor' icon" />
+                  </button>
+                </div>
+                
+                <button class="mainBtn">
+                  <img src="./assets/icons/brush.png" alt="'current brush' icon" />
+                </button>
+                
+                <label for="brushesExtInp" class="extendAction extendBrushes">
+                  <span>Brushes</span>
+                  
+                  <picture>
+                    <img src="./assets/icons/extend.png" alt="'extend' icon" />
+                  </picture>
+                </label>
+              </div>
+            </section>
+            
+            <div id="extendBrushesOpts" role="dialog">
+              <button>
+                <img src="./assets/icons/brush.png" alt="'brush' icon" />
               </button>
               
-              <div id="colorsCont">
-                <script>
-                  const initialColors = ["#000000","#7f7f7f","#880015","#ed1c24","#ff7f27","#fff200","#22b14c","#00a2e8","#3f48cc","#a349a4","#ffffff","#c3c3c3","#b97a57","#ffaec9","#ffc90e","#efe4b0","#b5e61d","#99d9ea","#7092be","#c8bfe7"]
-                  const trnspColors = Array.from({ length: 10 })
-                  const { parentElement: colorsCont } = document.currentScript
-                  
-                  colorsCont.replaceChildren.apply(
-                    colorsCont,
-                    initialColors.concat(trnspColors).map(color => {
-                      const colorCont = document.createElement('div')
-                      const colorBg = document.createElement('div')
-                      colorBg.classList.add('colorBg')
-                      colorCont.classList.add('colorCont')
-                      colorCont.style.setProperty('--color', color)
-                      colorCont.appendChild(colorBg)
-                      
-                      return colorCont
-                    })
-                  )
-                </script>
-              </div>
+              <button>
+                <img src="./assets/icons/pen1.png" alt="'pen 1' icon" />
+              </button>
+              
+              <button>
+                <img src="./assets/icons/pen2.png" alt="'pen 2' icon" />
+              </button>
+              
+              <button>
+                <img src="./assets/icons/airbrush.png" alt="'airbrush' icon" />
+              </button>
+              
+              <button>
+                <img src="./assets/icons/oilBrush.png" alt="'oil brush' icon" />
+              </button>
+              
+              <button>
+                <img src="./assets/icons/crayon.png" alt="'crayon' icon" />
+              </button>
+              
+              <button>
+                <img src="./assets/icons/marker.png" alt="'marker' icon" />
+              </button>
+              
+              <button>
+                <img src="./assets/icons/pencil.png" alt="'pencil' icon" />
+              </button>
+              
+              <button>
+                <img src="./assets/icons/watercolor.png" alt="'watercolor' icon" />
+              </button>
             </div>
             
-            <footer>Colors</footer>
-          </section>
-        </article>
-        
-        <article id="viewSections">
-          <label for="fullscreenChk">fullscreen</label>
-        </article>
-      </section>
+            <div class="sectionSeparator"></div>
+            
+            <section id="shapesSection">
+              <div class="actionBtns">
+                <div id="shapesCont">
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                  
+                  <button>
+                    <img src="./assets/icons/line.png" alt="'line' icon" />
+                  </button>
+                </div>
+                
+                <div id="outlineBtnCont" class="smlExtBtnCont">
+                  <input type="checkbox" id="extendOutlineInp" hidden />
+                  
+                  <label for="extendOutlineInp" id="outlineBtn" class="smlBtn">
+                    <picture>
+                      <img src="./assets/icons/stroke.png" alt="'outline shape' icon" />
+                    </picture>
+                    
+                    <span>Outline</span>
+                    
+                    <picture class="extendAction">
+                      <img src="./assets/icons/extend.png" alt="'extend' icon" />
+                    </picture>
+                  </label>
+                  
+                  <div role="dialog" class="extendOpts">
+                    <button>
+                      <picture>
+                        <img src="./assets/icons/flip90.png" alt="'no outline' icon" />
+                      </picture>
+                      
+                      <span>No outline</span>
+                    </button>
+                  </div>
+                </div>
+                
+                <div id="fillBtnCont" class="smlExtBtnCont">
+                  <input type="checkbox" id="extendFillInp" hidden />
+                  
+                  <label for="extendFillInp" id="fillShapeBtn" class="smlBtn">
+                    <picture>
+                      <img src="./assets/icons/fill.png" alt="'fill shape' icon" />
+                    </picture>
+                    
+                    <span>Fill</span>
+                    
+                    <picture class="extendAction">
+                      <img src="./assets/icons/extend.png" alt="'extend' icon" />
+                    </picture>
+                  </label>
+                  
+                  <div role="dialog" class="extendOpts">
+                    <button>
+                      <picture>
+                        <img src="./assets/icons/flip90.png" alt="'no outline' icon" />
+                      </picture>
+                      
+                      <span>No outline</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <footer>Shapes</footer>
+            </section>
+            
+            <div class="sectionSeparator"></div>
+            
+            <section id="sizesActSection" class="sizesSection">
+              <label for="sizesExtInp">
+                <div role="dialog" class="extendOpts">
+                  <button style="--lineSize: 1px">
+                    <span></span>
+                  </button>
+                </div>
+                
+                <picture class="iconSection">
+                  <img src="./assets/icons/sizes.png" alt="'sizes' icon" />
+                </picture>
+                
+                <span>Sizes</span>
+                
+                <picture class="extendAction">
+                  <img src="./assets/icons/extend.png" alt="'extend' icon" />
+                </picture>
+              </label>
+            </section>
+            
+            <div id="extendSizesOpts" role="dialog">
+              <button style="--lineSize: 1px">
+                <span></span>
+              </button>
+            </div>
+            
+            <div class="sectionSeparator"></div>
+            
+            <section id="colorsSection">
+              <div class="actionBtns">
+                <input type="radio" id="color1Inp" name="colorsInp" hidden checked />
+                <input type="radio" id="color2Inp" name="colorsInp" hidden />
+                
+                <label for="color1Inp" id="color1Btn" class="bigBtn" style="--currentColor: #000">
+                  <div class="colorCont">
+                    <div class="colorBg"></div>
+                  </div>
+                  
+                  <span>Color<br />1</span>
+                </label>
+                
+                <label for="color2Inp" id="color2Btn" class="bigBtn" style="--currentColor: #fff">
+                  <div class="colorCont">
+                    <div class="colorBg"></div>
+                  </div>
+                  
+                  <span>Color<br />2</span>
+                </label>
+                
+                <button id="editColorsBtn" class="bigBtn">
+                  <picture class="iconSection">
+                    <img src="./assets/icons/colors.png" alt="'colors' icon" />
+                  </picture>
+                  
+                  <span>Edit<br />colors</span>
+                </button>
+                
+                <div id="colorsCont">
+                  <script>(() => {
+                    const initialColors = ["#000000","#7f7f7f","#880015","#ed1c24","#ff7f27","#fff200","#22b14c","#00a2e8","#3f48cc","#a349a4","#ffffff","#c3c3c3","#b97a57","#ffaec9","#ffc90e","#efe4b0","#b5e61d","#99d9ea","#7092be","#c8bfe7"]
+                    const trnspColors = Array.from({ length: 10 })
+                    const { parentElement: colorsCont } = document.currentScript
+                    
+                    colorsCont.replaceChildren.apply(
+                      colorsCont,
+                      initialColors.concat(trnspColors).map(color => {
+                        const colorCont = document.createElement('div')
+                        const colorBg = document.createElement('div')
+                        colorBg.classList.add('colorBg')
+                        colorCont.classList.add('colorCont')
+                        colorCont.style.setProperty('--color', color)
+                        colorCont.appendChild(colorBg)
+                        
+                        return colorCont
+                      })
+                    )
+                  })()</script>
+                </div>
+              </div>
+              
+              <footer>Colors</footer>
+            </section>
+          </article>
+          
+          <article id="viewSections">
+            <section id="zoomSection">
+              <div class="actionBtns">
+                <button id="zoomInBtn">
+                  <picture>
+                    <img src="./assets/icons/zoomIn.png" alt="'zoom in' icon" />
+                  </picture>
+                  
+                  <span>Zoom<br />in</span>
+                </button>
+                
+                <button id="zoomOutBtn">
+                  <picture>
+                    <img src="./assets/icons/zoomOut.png" alt="'zoom out' icon" />
+                  </picture>
+                  
+                  <span>Zoom<br />out</span>
+                </button>
+                
+                <button id="zoom100Btn">
+                  <picture>
+                    <img src="./assets/icons/zoom100.png" alt="'zoom 100%' icon" />
+                  </picture>
+                  
+                  <span>Zoom<br />100%</span>
+                </button>
+              </div>
+              
+              <footer>Zoom</footer>
+            </section>
+            
+            <div class="sectionSeparator"></div>
+            
+            <section id="showOrHide">
+              <div class="actionBtns">
+                <label for="rulersChk" class="chkCont">
+                  <div class="chkbox"></div>
+                  <span>Rulers</span>
+                </label>
+                
+                <label for="gridLinesChk" class="chkCont" disabled>
+                  <div class="chkbox"></div>
+                  <span>Gridlines</span>
+                </label>
+                
+                <label for="statusBarChk" class="chkCont">
+                  <div class="chkbox"></div>
+                  <span>Status bar</span>
+                </label>
+              </div>
+              
+              <footer>Show or hide</footer>
+            </section>
+            
+            <div class="sectionSeparator"></div>
+            
+            <section id="displaySection">
+              <div class="actionBtns">
+                <label for="fullscreenChk">
+                  <picture>
+                    <img src="./assets/icons/fullscreen.png" alt="'full screen' icon" />
+                  </picture>
+                  
+                  <span>Full<br /> screen</span>
+                </label>
+                
+                <label disabled>
+                  <picture>
+                    <img src="./assets/icons/thumbnail.png" alt="'thumbnail' icon" />
+                  </picture>
+                  
+                  <span>Thumbnail</span>
+                </label>
+              </div>
+              
+              <footer>Display</footer>
+            </section>
+          </article>
+        </section>
+      </div>
     
       <section id="workspace">
-        <div id="ruleUnion"></div>
+        <div id="rulerUnion"></div>
         
-        <div id="ruleX"></div>
+        <div id="rulerX"></div>
         
-        <div id="ruleY"></div>
+        <div id="rulerY"></div>
         
         <article id="drawContainer">
           <canvas id="canvas"></canvas>
@@ -1027,26 +1058,63 @@
     </main>
     
     <footer id="appFooter">
-      <article>
+      <article id="pointerXY">
         <picture>
           <img src="./assets/icons/pointerXY.ico" alt="Pointer position" />
         </picture>
         
-        <span id="pointerPositionTxt">
+        <span id="pointerXYTxt">
           0, 0
         </span>
       </article>
       
       <span class="appFooterSeparator"></span>
       
-      <article>
+      <article id="selectionWH">
         <picture>
           <img src="./assets/icons/selectionWH.ico" alt="Selection size" />
         </picture>
         
-        <span id="pointerPositionTxt">
+        <span id="selectionWHTxt">
           0 x 0px
         </span>
+      </article>
+      
+      <span class="appFooterSeparator"></span>
+      
+      <article id="pageSize">
+        <picture>
+          <img src="./assets/icons/pageWH.ico" alt="page size" />
+        </picture>
+        
+        <span id="fileWHTxt">
+          0 x 0px
+        </span>
+      </article>
+      
+      <span class="appFooterSeparator"></span>
+      
+      <article id="fileSize">
+        <picture>
+          <img src="./assets/icons/pageSize.ico" alt="file size" />
+        </picture>
+        
+        <span id="fileSizeTxt">
+          0B
+        </span>
+      </article>
+      
+      <span class="appFooterSeparator"></span>
+      
+      <span id="appFooterSpace"></span>
+      
+      <span class="appFooterSeparator"></span>
+      
+      <article id="statusZoom">
+        <span id="zoomValue">100%</span>
+        <img src="./assets/icons/zoomOutBar.ico" alt="'zoom out' icon" id="zoomOutBarBtn" />
+        <input type="range" id="zoomBar" min="0" max="140" value="70" />
+        <img src="./assets/icons/zoomInBar.ico" alt="'zoom in' icon" id="zoomInBarBtn" />
       </article>
     </footer>
   </div>

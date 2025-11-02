@@ -1,15 +1,21 @@
+#statusBarChk:checked ~ #app #appFooter {
+  display: grid;
+}
+
 #appFooter {
+  width: 100%;
   border-top: 2px solid #d7d7d7;
-  display: flex;
+  display: none;
   padding: 5px;
-  gap: 5px;
+  grid-template-columns: auto auto auto auto auto auto auto auto 1fr auto auto;
+  grid-template-areas: 'pointer sep1 selection sep2 page sep3 file sep4 space sep5 zoom';
 }
 
 #appFooter article {
   gap: 5px;
   width: 150px;
   height: 1lh;
-  display: flex;
+  display: none;
   align-items: center;
   align-content: center;
 }
@@ -31,4 +37,77 @@
   height: 1lh;
   width: 2px;
   background-color: #d7d7d7;
+  display: none;
+  margin: 0 10px;
+}
+
+#appFooter > :nth-last-child(2) {
+  grid-area: sep5;
+  display: block;
+}
+
+#pointerXY {
+  grid-area: pointer;
+}
+
+#selectionWH {
+  grid-area: selection;
+}
+
+#pageSize {
+  grid-area: page;
+}
+
+#fileSize {
+  grid-area: file;
+}
+
+#appFooterSpace {
+  grid-area: space;
+  width: 100%;
+}
+
+#appFooter #statusZoom {
+  grid-area: zoom;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  width: auto;
+}
+
+#zoomBar {
+  -webkit-appearance: none;
+  appearance: none;
+  display: initial;
+  background: #e7eaea;
+  padding: 2px;
+  height: 4px;
+  box-shadow:
+    inset 2px 2px 0 0 #d7d7d7,
+    inset -2px -2px 0 0 #d7d7d7;
+}
+
+#zoomBar::-moz-range-thumb {
+  height: 1lh;
+  aspect-ratio: 20 / 35;
+  border: 0;
+  background: no-repeat url('../../assets/icons/zoomBarBtn.png');
+  background-size: auto 1lh;
+  cursor: pointer;
+}
+
+#zoomBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 1lh;
+  aspect-ratio: 20 / 35;
+  border: 0;
+  background: no-repeat url('../../assets/icons/zoomBarBtn.png');
+  background-size: auto 1lh;
+  cursor: pointer;
+}
+
+#statusZoom img {
+  width: 1lh;
+  height: 1lh;
 }

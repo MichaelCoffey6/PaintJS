@@ -1,0 +1,213 @@
+@media (width > 420px) {
+  #viewSections {
+    gap: 5px;
+  }
+  
+  #zoomSection picture {
+    padding: 0 5px;
+  }
+}
+
+@media (width > 480px) {
+  #displaySection .actionBtns {
+    grid-template-columns: auto auto;
+    grid-template-rows: 1fr;
+  }
+  
+  #displaySection label {
+    align-items: start;
+    padding: 0;
+    gap: 0;
+    grid-template-rows: calc(1.8lh + 12px) 2lh;
+    grid-template-columns: 1fr;
+  }
+  
+  #displaySection span {
+    text-align: center;
+    padding: 0 6px;
+  }
+  
+  #displaySection br {
+    display: initial;
+  }
+  
+  #displaySection picture {
+    background-color: #0000;
+    width: 100%;
+    height: auto;
+    padding: 0 3px;
+    margin: auto 0;
+    display: grid;
+    place-content: center;
+  }
+  
+  #displaySection img {
+    height: calc(1.8lh + 6px);
+  }
+  
+  #scrollRightBtn {
+    display: block;
+  }
+}
+
+@media (width > 890px) {
+  #appMain #actions {
+    grid-template-rows: auto;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'extendSections actionSections';
+  }
+  
+  #appMain #actionSections {
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    padding-bottom: 7px;
+  }
+  
+  #colorsSection, #sizesActSection {
+    position: initial;
+    padding: 3px 3px 0 3px;
+    box-shadow: none;
+    display: grid;
+    z-index: auto;
+  }
+  
+  #colorsSection .actionBtns .smlBtn span {
+    display: none;
+  }
+  
+  #extendColorsSection, #sizesExtSection, #sizesExtSection + .sectionSeparator {
+    display: none;
+  }
+  
+  #extendBrushesOpts {
+    top: calc(100% - (1lh + 7px));
+  }
+  
+  #extendSizesOpts + .sectionSeparator {
+    display: grid;
+  }
+}
+
+@media (width > 1050px) {
+  #shapesSection, #brushesActSection {
+    position: initial;
+    padding: 3px 3px 0 3px;
+    box-shadow: none;
+    display: grid;
+    z-index: auto;
+  }
+  
+  #shapesSection .actionBtns .smlBtn span {
+    display: none;
+  }
+  
+  #extendShapesSection, #brushesExtSection, #brushesExtSection + .sectionSeparator {
+    display: none;
+  }
+  
+  #shapesSection + .sectionSeparator,
+  #extendBrushesOpts + .sectionSeparator {
+    display: grid;
+  }
+}
+
+@media (width > 1100px) {
+  #shapesSection .actionBtns .smlBtn span {
+    display: initial;
+  }
+}
+
+@media (width > 1140px) {
+  #toolsSection {
+    position: initial;
+    padding: 3px 3px 0 3px;
+    box-shadow: none;
+    display: grid;
+    z-index: auto;
+  }
+  
+  #extendToolsSection {
+    display: none;
+  }
+  
+  #toolsSection + .sectionSeparator {
+    display: grid;
+  }
+}
+
+@media (width > 1240px) {
+  #imageSection {
+    position: initial;
+    padding: 3px 3px 0 3px;
+    box-shadow: none;
+    display: grid;
+    z-index: auto;
+  }
+  
+  #imageSection .actionBtns .smlBtn span {
+    display: none;
+  }
+  
+  #extendImageSection {
+    display: none;
+  }
+  
+  #imageSection + .sectionSeparator {
+    display: grid;
+  }
+}
+
+@media (width > 1200px) {
+  #imageSection .actionBtns .smlBtn span {
+    display: initial;
+  }
+}
+
+@media (width > 1270px) {
+  #clipboardSection {
+    position: initial;
+    padding: 3px 3px 0 3px;
+    box-shadow: none;
+    display: grid;
+    z-index: auto;
+  }
+  
+  #clipboardSection .actionBtns .smlBtn span {
+    display: none;
+  }
+  
+  #extendSections {
+    display: none;
+  }
+  
+  #clipboardSection + .sectionSeparator {
+    display: grid;
+  }
+}
+
+@media (width > 1300px) {
+  #clipboardSection .actionBtns .smlBtn span {
+    display: initial;
+  }
+  
+  #appMain #actions {
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    grid-template-areas: 'actionSections';
+  }
+  
+  
+  #appMain #extendSections {
+    display: none;
+  }
+  
+  #app #appMain #actionSections {
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    padding-bottom: 7px;
+  }
+}

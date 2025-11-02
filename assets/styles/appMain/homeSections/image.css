@@ -1,76 +1,5 @@
-/* EXTEND SECTION */
-
-#extendImageSectionInp:checked ~ #app #extendImageSection {
-  background-color: #c9e0f7;
-}
-
-#extendImageSectionInp:checked ~ #app #extendImageSection .iconSection {
-  background-color: #edf4fc;
-}
-
-#extendImageSection {
-  text-align: center;
-  justify-content: center;
-  background-color: #edf4fc;
-  padding: 8px 3px 0 3px;
-  display: grid;
-  grid-template-rows: calc(1.8lh + 7px) 1lh 1lh 1lh;
-  box-shadow: 
-    inset 2px -2px 0 0 #a8d2fd,
-    inset -2px 2px 0 0 #a8d2fd
-}
-
-#extendImageSection .iconSection {
-  aspect-ratio: 1 / 1;
-  width: 45px;
-  margin: 0 5px;
-  text-align: center;
-  padding: 5px;
-  background-color: #f5f6f7;
-  border: 2px solid #a8d2fd;
-}
-
-#extendImageSection .iconSection img {
-  width: 25px;
-}
-
-#extendImageSection .extendAction {
-  display: flex;
-  align-items: start;
-  justify-content: center;
-}
-
-#extendImageSection .extendAction img {
-  width: 0.5lh;
-  margin-top: 0.2lh;
-}
-
-
-/* SECTION */
-
-#extendImageSectionInp:checked ~ #app #imageSection {
-  display: grid;
-}
-
-#imageSection {
-  background-color: #f5f6f7;
-  top: 100%;
-  position: absolute;
-  padding: 6px 8px 3px 8px;
-  display: none;
-  box-shadow: 2px 2px 2px 0 lightgray;
-  gap: 5px;
-  grid-template-rows: calc(3.8lh + 12px) auto;
-}
-
-#imageSection footer {
-  text-align: center;
-  padding: 0;
-}
-
 #imageSection .actionBtns {
   display: grid;
-  column-gap: 3px;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas: 
     'bigBtn smlBtn1'
@@ -200,6 +129,7 @@
 
 #imageSection .bigBtn .extendOpts {
   position: absolute;
+  z-index: 2;
   background-color: #fff;
   top: 100%;
   padding: 4px;
@@ -232,15 +162,13 @@
 
 #imageSection .bigBtn .extendOpts picture {
   padding: 4px;
-  padding-left: 6px;
-  width: 35px;
-  height: 35px;
+  padding-right: 2px;
   display: flex;
   border-right: 2px solid #d7d7d7
 }
 
 #imageSection .bigBtn .extendOpts img {
-  width: 100%;
+  height: 1lh;
   object-fit: contain;
 }
 
@@ -271,6 +199,7 @@
 
 #imageSection .smlExtBtnCont .extendOpts {
   position: absolute;
+  z-index: 2;
   top: 100%;
   background-color: #fff;
   padding: 4px;
@@ -308,15 +237,13 @@
 
 #imageSection .smlExtBtnCont .extendOpts picture {
   padding: 4px;
-  padding-left: 6px;
-  width: 35px;
-  height: 35px;
+  padding-right: 2px;
   display: flex;
   border-right: 2px solid #d7d7d7
 }
 
 #imageSection .smlExtBtnCont .extendOpts img {
-  width: 100%;
+  height: 1lh;
   object-fit: contain;
 }
 

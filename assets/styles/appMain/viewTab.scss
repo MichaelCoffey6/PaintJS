@@ -1,9 +1,8 @@
-@use "./viewSections/fullscreen.css";
+@use "./viewSections/zoom.css";
+@use "./viewSections/show.css";
+@use "./viewSections/display.css";
 
 #viewSections {
   display: none;
-}
-
-#viewExtSections {
-  display: none;
+  width: 100%;
 }

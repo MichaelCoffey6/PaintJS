@@ -1,73 +1,3 @@
-/* EXTEND SECTION */
-
-#extendColorsSectionInp:checked ~ #app #extendColorsSection {
-  background-color: #c9e0f7;
-}
-
-#extendColorsSectionInp:checked ~ #app #extendColorsSection .iconSection {
-  background-color: #edf4fc;
-}
-
-#extendColorsSection {
-  text-align: center;
-  justify-content: center;
-  background-color: #edf4fc;
-  padding: 8px 3px 0 3px;
-  display: grid;
-  grid-template-rows: calc(1.8lh + 7px) 1lh 0.8lh 1lh;
-  box-shadow: 
-    inset 2px -2px 0 0 #a8d2fd,
-    inset -2px 2px 0 0 #a8d2fd
-}
-
-#extendColorsSection .iconSection {
-  aspect-ratio: 1 / 1;
-  width: 45px;
-  margin: 0 5px;
-  text-align: center;
-  padding: 5px;
-  background-color: #f5f6f7;
-  border: 2px solid #a8d2fd;
-}
-
-#extendColorsSection .iconSection img {
-  width: 25px;
-}
-
-#extendColorsSection .extendAction {
-  display: flex;
-  align-items: start;
-  justify-content: center;
-}
-
-#extendColorsSection .extendAction img {
-  width: 0.5lh;
-  margin-top: 0.2lh;
-}
-
-
-/* SECTION */
-
-#extendColorsSectionInp:checked ~ #app #colorsSection {
-  display: grid;
-}
-
-#colorsSection {
-  background-color: #f5f6f7;
-  top: 100%;
-  position: absolute;
-  padding: 6px 8px 3px 8px;
-  display: none;
-  box-shadow: 2px 2px 2px 0 lightgray;
-  gap: 5px;
-  grid-template-rows: calc((3.8lh + 12px) * 2) auto;
-}
-
-#colorsSection footer {
-  text-align: center;
-  padding: 0;
-}
-
 #colorsSection .actionBtns {
   display: grid;
   gap: 3px;
@@ -108,11 +38,11 @@
   place-content: center;
   aspect-ratio: 1 / 1;
   margin: auto;
-  padding: 4px;
+  padding: 3px;
   display: flex;
   box-shadow:
-    inset -2px 2px 0 0 #808080,
-    inset 2px -2px 0 0 #808080
+    inset -1px 1px 0 0 #808080,
+    inset 1px -1px 0 0 #808080
 }
 
 #colorsSection .bigBtn .colorBg {
@@ -161,16 +91,17 @@
   display: grid;
   gap: 2px;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: repeat(10, auto);
+  grid-template-columns: repeat(10, 1fr);
 }
 
 #colorsCont .colorCont {
   border: 0;
   aspect-ratio: 1 / 1;
-  padding: 4px;
+  height: 100%;
+  padding: 3px;
   box-shadow:
-    inset -2px 2px 0 0 #808080,
-    inset 2px -2px 0 0 #808080
+    inset -1px 1px 0 0 #808080,
+    inset 1px -1px 0 0 #808080
 }
 
 #colorsCont .colorBg {

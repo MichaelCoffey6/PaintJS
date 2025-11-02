@@ -5,7 +5,7 @@
 }
 
 #tabs .tab {
-  place-content: center;
+  justify-content: center;
   display: flex;
   padding: 7px;
   box-shadow:
@@ -32,14 +32,31 @@
     inset 2px 0 0 0 #d7d7d7
 }
 
-#homeTabChk:checked ~ #app #homeSections,
-#homeTabChk:checked ~ #app #homeExtSections {
+#homeTabChk:checked ~ #app #homeSections {
   display: flex;
 }
 
-#viewTabChk:checked ~ #app #viewSections,
-#viewTabChk:checked ~ #app #viewExtSections {
+#viewTabChk:checked ~ #app #viewSections {
   display: flex;
+}
+
+#viewTabChk:checked ~ #app #extendSections {
+  display: none;
+}
+
+#viewTabChk:checked ~ #app #actions {
+  grid-template-rows: auto;
+  grid-template-areas: 'actionSections';
+}
+
+#viewTabChk:checked ~ #app #actionSections {
+  height: auto;
+  padding: 5px 3px;
+  padding-bottom: 7px;
+}
+
+#viewTabChk:checked ~ #app #viewSections .sectionSeparator {
+  display: initial;
 }
 
 #fileTab {

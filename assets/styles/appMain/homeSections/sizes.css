@@ -1,28 +1,8 @@
-/* SECTION */
-
-#sizesActSection,
-#sizesExtSection {
-  background-color: #f5f6f7;
-  top: 100%;
-  position: absolute;
-  padding: 6px 8px 3px 8px;
-  display: none;
-  box-shadow: 2px 2px 2px 0 lightgray;
-  gap: 5px;
-  grid-template-rows: calc(3.8lh + 12px) 1lh;
-}
-
 #sizesExtSection {
   position: static;
   display: grid;
   padding: 3px 3px 0 3px;
   box-shadow: none;
-}
-
-#sizesActSection footer,
-#sizesExtSection footer {
-  text-align: center;
-  padding: 0;
 }
 
 #sizesActSection label,
@@ -86,6 +66,7 @@
 #extendSizesOpts,
 #sizesActSection .extendOpts {
   position: absolute;
+  z-index: 2;
   top: 100%;
   display: none;
   height: auto;
@@ -97,7 +78,7 @@
 }
 
 #extendSizesOpts {
-  top: calc((1lh + 12px) * -1);
+  top: calc(100% - 12px - 1lh);
 }
 
 #sizesExtInp:checked ~ #app #sizesActSection .extendOpts {

@@ -1,0 +1,62 @@
+#extendClipboardSectionInp:checked ~ #app #clipboardSection,
+#extendImageSectionInp:checked ~ #app #imageSection,
+#extendToolsSectionInp:checked ~ #app #toolsSection,
+#extendShapesSectionInp:checked ~ #app #shapesSection,
+#extendColorsSectionInp:checked ~ #app #colorsSection {
+  display: grid;
+}
+
+#clipboardSection,
+#imageSection, 
+#toolsSection,
+#brushesActSection,
+#brushesExtSection,
+#shapesSection,
+#sizesActSection,
+#sizesExtSection,
+#colorsSection,
+#zoomSection,
+#showOrHide,
+#displaySection {
+  background-color: #f5f6f7;
+  top: 100%;
+  position: absolute;
+  z-index: 1;
+  padding: 6px 8px 3px 8px;
+  display: none;
+  box-shadow: 2px 2px 2px 0 lightgray;
+  gap: 5px;
+  grid-template-rows: calc(3.8lh + 12px) 1lh;
+}
+
+#colorsSection {
+  grid-template-rows: calc((3.8lh + 12px) * 2) auto;
+}
+
+#zoomSection, #showOrHide, #displaySection {
+  box-shadow: none;
+  padding: 3px 3px 0 3px;
+  z-index: auto;
+  display: grid;
+  position: initial
+}
+
+#showOrHide {
+  padding: 3px 6px 0 6px;
+}
+
+#clipboardSection footer,
+#imageSection footer, 
+#toolsSection footer,
+#brushesActSection footer,
+#brushesExtSection footer,
+#shapesSection footer,
+#sizesActSection footer,
+#sizesExtSection footer,
+#colorsSection footer,
+#zoomSection footer,
+#showOrHide footer,
+#displaySection footer {
+  text-align: center;
+  padding: 0;
+}

@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: SegoeExtern;
-  src: url('./assets/Segoe UI.woff2')
+  src: url('./assets/SegoeUI.woff2')
 }
 
 body {
@@ -19,7 +19,7 @@ body {
 
 body * {
   box-sizing: border-box;
-  font-size: 15px;
+  font-size: 14px;
   font-family: SegoeExtern, ArialExtern, Arial, Sans-Serif;
   color: #333;
 }
@@ -32,14 +32,18 @@ body * {
   opacity: 0.5;
 }
 
-body [disabled] span {
+body [disabled] span, body [disabled] {
   color: #3338;
+}
+
+label, button {
+  user-select: none;
 }
 
 #app {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   display: grid;
   grid-template-rows: auto 1fr auto;
 }

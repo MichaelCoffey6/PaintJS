@@ -1,28 +1,8 @@
-/* SECTION */
-
-#brushesActSection,
-#brushesExtSection {
-  background-color: #f5f6f7;
-  top: 100%;
-  position: absolute;
-  padding: 6px 8px 3px 8px;
-  display: none;
-  box-shadow: 2px 2px 2px 0 lightgray;
-  gap: 5px;
-  grid-template-rows: calc(3.8lh + 12px) 1lh;
-}
-
 #brushesExtSection {
   position: static;
   display: grid;
   padding: 3px 3px 0 3px;
   box-shadow: none;
-}
-
-#brushesActSection footer,
-#brushesExtSection footer {
-  text-align: center;
-  padding: 0;
 }
 
 #brushesExtSection button {
@@ -90,6 +70,7 @@
 #brushesActSection .extendOpts,
 #extendBrushesOpts {
   position: absolute;
+  z-index: 2;
   background-color: #fff;
   top: 100%;
   padding: 4px;
@@ -101,7 +82,7 @@
 }
 
 #extendBrushesOpts {
-  top: calc((1lh + 12px) * -1);
+  top: calc(100% - 12px - 1lh);
 }
 
 #brushesActSection .extendOpts button:hover,

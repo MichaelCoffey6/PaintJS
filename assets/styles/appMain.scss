@@ -1,7 +1,9 @@
 @use "./appMain/tabs.css";
 @use "./appMain/fileTab.css";
+@use "./appMain/actionSections.css";
 @use "./appMain/homeTab.scss";
 @use "./appMain/viewTab.scss";
+@use "./appMain/mqActions.css";
 @use "./appMain/workspace.css";
 
 #appMain {
@@ -10,28 +12,29 @@
   overflow: hidden;
   position: relative;
   display: grid;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
   grid-template-areas:
     'tabs'
-    'extendSections'
-    'actionSections'
+    'actions'
     'workspace';
 }
 
 #actions {
+  grid-area: actions;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: visible;
+  display: grid;
+  position: relative;
+  background-color: #f5f6f7;
+  grid-template-rows: auto 0;
+  grid-template-areas: 'extendSections' 'actionSections';
 }
 
 #actionSections {
   grid-area: actionSections;
   display: flex;
-  width: 100%;
-  max-width: 100%;
   height: 0;
-  background-color: #f5f6f7;
   box-shadow: inset 0 -2px 0 0 #d7d7d7;
 }
 
@@ -52,6 +55,12 @@
   width: 100%;
   max-width: 100%;
   overflow: auto;
+  display: flex;
+  gap: 5px;
+}
+
+#scrollCont::-webkit-scrollbar {
+  display: none;
 }
 
 #scrollLeftBtn {
@@ -59,9 +68,11 @@
   background-color: #edf4fc;
   border: 2px solid #95c2ef;
   display: none;
+  width: min-content;
 }
 
 #scrollRightBtn {
+  width: min-content;
   padding: 4px;
   background-color: #edf4fc;
   border: 2px solid #95c2ef;

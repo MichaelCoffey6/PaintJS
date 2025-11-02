@@ -1,0 +1,74 @@
+#extendClipboardSectionInp:checked ~ #app #extendClipboardSection,
+#extendImageSectionInp:checked ~ #app #extendImageSection, 
+#extendToolsSectionInp:checked ~ #app #extendToolsSection,
+#extendShapesSectionInp:checked ~ #app #extendShapesSection,
+#extendColorsSectionInp:checked ~ #app #extendColorsSection {
+  background-color: #c9e0f7;
+}
+
+#extendClipboardSectionInp:checked ~ #app #extendClipboardSection .iconSection,
+#extendImageSectionInp:checked ~ #app #extendImageSection .iconSection,
+#extendToolsSectionInp:checked ~ #app #extendToolsSection .iconSection,
+#extendShapesSectionInp:checked ~ #app #extendShapesSection .iconSection,
+#extendColorsSectionInp:checked ~ #app #extendColorsSection .iconSection {
+  background-color: #edf4fc;
+}
+
+#extendClipboardSection,
+#extendImageSection,
+#extendToolsSection,
+#extendShapesSection,
+#extendColorsSection {
+  text-align: center;
+  background-color: #edf4fc;
+  padding: 3px 3px 0 3px;
+  display: grid;
+  grid-template-rows: calc(1.8lh + 12px) 1lh 1lh 5px 1lh;
+  box-shadow: 
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#extendClipboardSection .iconSection,
+#extendImageSection .iconSection,
+#extendToolsSection .iconSection,
+#extendShapesSection .iconSection,
+#extendColorsSection .iconSection {
+  aspect-ratio: 1 / 1;
+  height: calc(1.8lh + 6px);
+  margin: auto 5px;
+  padding-top: 3px;
+  background-color: #f5f6f7;
+  border: 2px solid #a8d2fd;
+}
+
+#extendClipboardSection .iconSection {
+  margin: auto;
+}
+
+#extendClipboardSection .iconSection img,
+#extendImageSection .iconSection img,
+#extendToolsSection .iconSection img,
+#extendShapesSection .iconSection img,
+#extendColorsSection .iconSection img {
+  width: 25px;
+}
+
+#extendClipboardSection .extendAction,
+#extendImageSection .extendAction,
+#extendToolsSection .extendAction,
+#extendShapesSection .extendAction,
+#extendColorsSection .extendAction {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+#extendClipboardSection .extendAction img,
+#extendImageSection .extendAction img,
+#extendToolsSection .extendAction img,
+#extendShapesSection .extendAction img,
+#extendColorsSection .extendAction img {
+  width: 0.5lh;
+  margin-top: 0.2lh;
+}

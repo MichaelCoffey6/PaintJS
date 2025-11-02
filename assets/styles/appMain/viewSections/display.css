@@ -1,0 +1,52 @@
+#displaySection .actionBtns {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+#displaySection label {
+  align-items: center;
+  display: grid;
+  gap: 3px;
+  grid-template-columns: auto auto;
+  background-color: #0000;
+  padding: 0 5px;
+}
+
+#displaySection label:hover {
+  background-color: #edf4fc;
+  box-shadow:
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#displaySection label:focus {
+  background-color: #c9e0f7;
+  box-shadow:
+    inset 2px -2px 0 0 #a8d2fd,
+    inset -2px 2px 0 0 #a8d2fd
+}
+
+#displaySection picture {
+  height: 1lh;
+}
+
+#displaySection img {
+  height: 100%;
+}
+
+#displaySection br {
+  display: none;
+}
+
+#fullscreenChk:checked ~ #app #fullscreenCont {
+  display: flex;
+}
+
+#fullscreenCont {
+  position: absolute;
+  z-index: 3;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}

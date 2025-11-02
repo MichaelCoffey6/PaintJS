@@ -46,7 +46,7 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
     return this.#width
   }
   
-  callback (fn) {
+  callback (fn, type) {
     fn.call(this, {
       target: this,
       rgb: this.RGB, 
@@ -54,11 +54,12 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
       hex: this.HEX,
       hslValues: this.HSLv,
       rgbValues: this.RGBv,
+      type
     })
   }
   
   on (type, fn) {
-    const callback = () => this.callback(fn)
+    const callback = () => this.callback(fn, type)
     this.#events.set(fn, callback)
     this.addEventListener(type, this.#events.get(fn))
   }
@@ -90,8 +91,8 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
       display: inline-block
     }
     
-    * {
-      font-family: Arial, system-ui;
+    *, button, input {
+      font-family: inherit, Arial, system-ui;
     }
     
     #colorPicker {
@@ -139,7 +140,7 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
       padding: 0;
     }
     
-    #customColors section, #basicColors section {
+    #customColors div, #basicColors div {
       width: 100%;
       display: flex;
       flex-flow: row wrap;
@@ -168,6 +169,7 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
     }
     
     #extitBtns button {
+      font-family: inherit;
       margin: 0;
       border-radius: 0;
       border-width: 1px;
@@ -279,6 +281,7 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
     
     #currentColorPrev span {
       width: 100%;
+      white-space: nowrap;
     }
     
     #currentColor {
@@ -302,7 +305,6 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
       gap: 0 calc(var(--width) / 70);
       justify-content: end;
       align-items: center;
-      
     }
     
     #inputs input {
@@ -316,6 +318,7 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
     }
     
     #btnAddColor {
+      font-family: inherit;
       grid-area: btnAddColor;
       width: 100%;
       border-radius: 0;
@@ -337,34 +340,35 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
     
     return (`
   <div id="colorPicker">
-    <div id="pallette">
-      <div id="basicColors">
+    <section id="pallette">
+      <article id="basicColors">
         <p>Basic colors:</p>
-        <section>${ basicColors }</section>
-      </div>
-      <div id="customColors">
+        <div>${ basicColors }</div>
+      </article>
+      <article id="customColors">
         <p>Custom colors:</p>
-        <section>${ customColors }</section>
-      </div>
-      <div id="extitBtns">
+        <div>${ customColors }</div>
+      </article>
+      <article id="extitBtns">
         <button id="defCustom" disabled>Define custom colors</button>
-        <button id="acceptBtn">Accept</button><button id=cancelBtn>Cancel</button>
-      </div>
-    </div>
-    <div id="picker" style="">
-      <div id="colorPickerCanvas">
+        <button id="acceptBtn">Accept</button>
+        <button id="cancelBtn">Cancel</button>
+      </article>
+    </section>
+    <section id="picker" style="">
+      <article id="colorPickerCanvas">
         <div id="pointerCol"></div>
-      </div>
-      <div id="luminescent">
+      </article>
+      <article id="luminescent">
         <div id="pointerLum"></div>
-      </div>
-    </div>
-    <div id="values">
-      <div id="currentColorPrev" style="">
+      </article>
+    </section>
+    <section id="values">
+      <article id="currentColorPrev" style="">
         <div id="currentColor"></div>
         <span>Solid Color</span>
-      </div>
-      <div id="inputs">
+      </article>
+      <article id="inputs">
         <label for="Hue">
           Hue <input type="number" name=HSL id=Hue max=255 min=0 />
         </label>
@@ -388,9 +392,9 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
         <label for="Blue">
           Blue <input type="number" name=RGB id=Blue max=255 min=0 />
         </label>
-      </div>
+      </article>
       <button id="btnAddColor">Add to custom colors</button>
-    </div>
+    </section>
   </div>`)
   }
   script (changeWidth) {
@@ -425,6 +429,8 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
     const pointerCol = $('#pointerCol')
     const luminescent = $('#luminescent')
     const btnAddColor = $('#btnAddColor')
+    const acceptBtn = $('#acceptBtn')
+    const cancelBtn = $('#cancelBtn')
     
     const changeGradHSL = hsl => {
       luminescent.style.background = `linear-gradient(to bottom, #fff, ${ hsl }, #000)`
@@ -454,7 +460,7 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
       container.style.setProperty('--value', value)
       
       this.dispatchEvent(
-        new window.CustomEvent('change', { cancelable: true })
+        new Event('change', { cancelable: true })
       )
     }
     
@@ -610,6 +616,8 @@ customElements.define('color-picker', class ColorPicker extends HTMLElement {
     luminescent.ontouchmove = lumTouchEvent
     luminescent.onclick = lumClickEvent
     btnAddColor.onclick = addCustomColor
+    acceptBtn.onclick = () => this.dispatchEvent(new Event('accept'))
+    cancelBtn.onclick = () => this.dispatchEvent(new Event('cancel'))
     
     basicColors.forEach(color => color.onclick = selectBasicColor)
     inputsRGB_HSL.forEach(input => input.oninput = changeInverse)

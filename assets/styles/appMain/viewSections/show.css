@@ -1,0 +1,28 @@
+#showOrHide .actionBtns {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+#showOrHide .chkCont {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+#rulersChk:checked ~ #app [for=rulersChk] .chkbox::after,
+#gridLinesChk:checked ~ #app [for=gridLinesChk] .chkbox::after,
+#statusBarChk:checked ~ #app [for=statusBarChk] .chkbox::after {
+  content: '✓';
+}
+
+#showOrHide .chkbox::after {
+  place-content: center;
+  content: '';
+  background-color: #fff;
+  height: 1lh;
+  width: 1lh;
+  display: grid;
+  box-shadow: 
+    inset 1px -1px 0 0 #808080,
+    inset -1px 1px 0 0 #808080
+}

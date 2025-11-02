@@ -7,96 +7,95 @@
   grid-template-rows: auto 1fr;
   grid-template-columns: auto 1fr;
   grid-template-areas: 
-    'ruleUnion ruleX'
-    'ruleY drawContainer';
+    'rulerUnion rulerX'
+    'rulerY drawContainer';
 }
 
-#ruleChk ~ #app #ruleUnion,
-#ruleChk ~ #app #ruleX,
-#ruleChk ~ #app #ruleY {
+#rulersChk ~ #app #rulerUnion,
+#rulersChk ~ #app #rulerX,
+#rulersChk ~ #app #rulerY {
   display: none;
 }
 
-#ruleChk:checked ~ #app #ruleUnion,
-#ruleChk:checked ~ #app #ruleX,
-#ruleChk:checked ~ #app #ruleY {
+#rulersChk:checked ~ #app #rulerUnion,
+#rulersChk:checked ~ #app #rulerX,
+#rulersChk:checked ~ #app #rulerY {
   background-color: #f1f3f8;
   display: flex;
 }
 
-#ruleX {
+#rulerX {
   padding-left: 5px;
-  display: flex;
   border-bottom: 1px solid #8e9caf;
 }
 
-#ruleX .ruleSection {
-  width: var(--rule-scale);
+#rulerX .rulerSection {
+  width: calc(var(--ruler-scale) - 1px);
 }
 
-#ruleX .ruleLines {
+#rulerX .rulerLines {
   width: 100%;
   height: 100%;
   display: flex;
 }
 
-#ruleX .ruleLines span {
-  margin-left: calc((var(--rule-scale) - 9px) / 10);
+#rulerX .rulerLines span {
+  margin-left: calc((var(--ruler-scale) - 9px) / 10);
   width: 1px;
   height: 5px;
   background-color: #8e9caf;
 }
 
-#ruleX .ruleSeparator {
+#rulerX .rulerSeparator {
   height: 100%;
   width: 1px;
   background-color: #8e9caf;
 }
 
-#ruleX .ruleNumber {
+#rulerX .rulerNumber {
   padding: 0 4px;
   height: 1lh;
 }
 
-#ruleY {
-  border-right: 1px solid #8e9caf;
-  padding-top: 5px;
-  display: flex;
+#rulerY {
+  border-left: 1px solid #8e9caf;
+  padding-bottom: 5px;
   text-align: right;
   flex-direction: row-reverse;
-  writing-mode: sideways-lr;
+  transform: rotate(-180deg);
+  writing-mode: vertical-rl;
 }
 
-#ruleY .ruleSection {
-  height: var(--rule-scale);
+#rulerY .rulerSection {
+  height: calc(var(--ruler-scale) - 1px);
 }
 
-#ruleY .ruleLines {
+#rulerY .rulerLines {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row-reverse;
 }
 
-#ruleY .ruleLines span {
-  margin-top: calc((var(--rule-scale) - 9px) / 10);
+#rulerY .rulerLines span {
+  margin-bottom: calc((var(--ruler-scale) - 9px) / 10);
   width: 5px;
   height: 1px;
   background-color: #8e9caf;
 }
 
-#ruleY .ruleSeparator {
+#rulerY .rulerSeparator {
   height: 1px;
   width: 100%;
   background-color: #8e9caf;
 }
 
-#ruleY .ruleNumber {
+#rulerY .rulerNumber {
   padding: 4px 0;
   width: 1lh;
 }
 
-.ruleSection {
+.rulerSection {
   display: grid;
   grid-template-rows: 1lh 5px;
 }
@@ -105,8 +104,13 @@
   grid-area: drawContainer;
   background-color: #dae3f0;
   padding: 5px;
+  
+  display: grid;
 }
 
 #canvas {
+  image-rendering: pixelated;
+  display: inline-block;
   background-color: #fff;
+  box-shadow: 2px 2px 2px 0 lightgray;
 }
